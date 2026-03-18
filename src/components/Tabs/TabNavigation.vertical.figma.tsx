@@ -39,7 +39,7 @@ figma.connect(
     },
     example: ({ selected }) => (
       <VerticalTabNavigation
-        ariaLabel="Vertical tab navigation"
+        ariaLabel="Content tabs"
         defaultSelected="tab-1"
         items={verticalItems}
         selected={selected}
