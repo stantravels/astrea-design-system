@@ -1,0 +1,8 @@
+{
+  "codeConnect": {
+    "include": ["src/components/**/*.{ts,tsx}"],
+    "exclude": ["src/**/*.stories.tsx"],
+    "label": "React",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/2xS0QG1Xzg8rGGrENI9BHN/Astrea-Design-System-v2?node-id=17-274&p=f&t=EquaG5YM9kSxEizz-0"
+  }
+}

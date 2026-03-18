@@ -1,0 +1,140 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--ast-font-family-sans);
+  background: var(--ast-color-surface-canvas);
+  color: var(--ast-color-text-primary);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(52, 84, 209, 0.08), transparent 36%),
+    linear-gradient(
+      180deg,
+      var(--ast-color-surface-subtle) 0%,
+      var(--ast-color-surface-canvas) 28%,
+      var(--ast-color-surface-canvas) 100%
+    );
+  color: var(--ast-color-text-primary);
+}
+
+body,
+button,
+input {
+  font: var(--ast-type-body-md);
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.playground-shell {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0 88px;
+}
+
+.playground-hero {
+  display: grid;
+  gap: 20px;
+  padding: 40px;
+  border: 1px solid var(--ast-color-border-subtle);
+  border-radius: var(--ast-radius-2xl);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(243, 246, 255, 0.88));
+  box-shadow: var(--ast-shadow-lg);
+}
+
+.playground-eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--ast-color-fill-brand-subtle);
+  color: var(--ast-color-text-brand);
+  font: var(--ast-type-label-md);
+}
+
+.playground-hero h1,
+.playground-card h2 {
+  margin: 0;
+  color: var(--ast-color-text-primary);
+}
+
+.playground-hero h1 {
+  font: var(--ast-type-heading-display);
+  letter-spacing: -0.04em;
+  max-width: 14ch;
+}
+
+.playground-hero p,
+.playground-card p {
+  margin: 0;
+  color: var(--ast-color-text-secondary);
+}
+
+.playground-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.playground-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.playground-card {
+  display: grid;
+  gap: 20px;
+  min-height: 320px;
+  padding: 32px;
+  border: 1px solid var(--ast-color-border-subtle);
+  border-radius: var(--ast-radius-xl);
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--ast-shadow-md);
+}
+
+@media (max-width: 960px) {
+  .playground-shell {
+    width: min(100% - 24px, 1200px);
+    padding: 32px 0 48px;
+  }
+
+  .playground-hero,
+  .playground-card {
+    padding: 24px;
+  }
+
+  .playground-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .playground-hero h1 {
+    max-width: 100%;
+  }
+}
