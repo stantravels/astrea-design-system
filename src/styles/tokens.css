@@ -103,6 +103,7 @@
   --astrea-tab-corner-radius: 0px;
   --astrea-tab-border-width: 1px;
   --astrea-tab-border-width-active: 3px;
+  --astrea-border-focus: #eace02;
   --astrea-tab-border-color: #768594;
   --astrea-tab-border-color-hover: #455b71;
   --astrea-tab-border-color-pressed: #455b71;

@@ -1,4 +1,4 @@
-import { Icon, type IconName } from '../Icon/Icon';
+import { Icon } from '../Icon/Icon';
 import styles from './Tab.module.css';
 
 export type TabState = 'Default' | 'Hover' | 'Disabled' | 'Focused' | 'Pressed';
@@ -10,9 +10,9 @@ export interface TabProps {
   selected?: boolean;
   text?: string;
   showIconBefore?: boolean;
-  iconBefore?: IconName;
+  iconBefore?: string;
   showIconAfter?: boolean;
-  iconAfter?: IconName;
+  iconAfter?: string;
   showCounter?: boolean;
   counter?: string;
 }

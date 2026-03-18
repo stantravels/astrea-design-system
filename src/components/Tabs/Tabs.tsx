@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { Tab, type TabProps, type TabState } from '../Tab/Tab';
 import styles from './Tabs.module.css';
 
@@ -36,7 +36,9 @@ function TabNavigationBase({
   const [hoveredValue, setHoveredValue] = useState<string | null>(null);
   const [pressedValue, setPressedValue] = useState<string | null>(null);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
+  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const selectedValue = selected ?? internalValue;
+  const focusableValue = focusedValue ?? selectedValue;
 
   const handleSelect = (nextValue: string) => {
     if (selected === undefined) {
@@ -45,6 +47,35 @@ function TabNavigationBase({
 
     onSelectedChange?.(nextValue);
   };
+
+  const focusItem = (nextValue: string) => {
+    setFocusedValue(nextValue);
+    buttonRefs.current[nextValue]?.focus();
+  };
+
+  const moveFocus = (currentValue: string, direction: 'next' | 'previous' | 'first' | 'last') => {
+    const currentIndex = items.findIndex((item) => item.value === currentValue);
+
+    if (currentIndex === -1 || items.length === 0) {
+      return;
+    }
+
+    if (direction === 'first') {
+      focusItem(items[0].value);
+      return;
+    }
+
+    if (direction === 'last') {
+      focusItem(items[items.length - 1].value);
+      return;
+    }
+
+    const delta = direction === 'next' ? 1 : -1;
+    const nextIndex = (currentIndex + delta + items.length) % items.length;
+    focusItem(items[nextIndex].value);
+  };
+
+  const isHorizontal = layout === 'Horizontal';
 
   const getVisualState = (value: string): TabState => {
     if (pressedValue === value) {
@@ -65,6 +96,7 @@ function TabNavigationBase({
   return (
     <div
       aria-label={ariaLabel}
+      aria-orientation={isHorizontal ? 'horizontal' : 'vertical'}
       className={styles.root}
       data-layout={layout}
       role="tablist"
@@ -79,8 +111,11 @@ function TabNavigationBase({
             aria-selected={isSelected}
             className={styles.button}
             role="tab"
-            tabIndex={isSelected ? 0 : -1}
+            tabIndex={item.value === focusableValue ? 0 : -1}
             type="button"
+            ref={(element) => {
+              buttonRefs.current[item.value] = element;
+            }}
             onBlur={() => {
               setFocusedValue((currentValue) =>
                 currentValue === item.value ? null : currentValue,
@@ -91,6 +126,36 @@ function TabNavigationBase({
             }}
             onClick={() => handleSelect(item.value)}
             onFocus={() => setFocusedValue(item.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Home') {
+                event.preventDefault();
+                moveFocus(item.value, 'first');
+                return;
+              }
+
+              if (event.key === 'End') {
+                event.preventDefault();
+                moveFocus(item.value, 'last');
+                return;
+              }
+
+              if ((isHorizontal && event.key === 'ArrowRight') || (!isHorizontal && event.key === 'ArrowDown')) {
+                event.preventDefault();
+                moveFocus(item.value, 'next');
+                return;
+              }
+
+              if ((isHorizontal && event.key === 'ArrowLeft') || (!isHorizontal && event.key === 'ArrowUp')) {
+                event.preventDefault();
+                moveFocus(item.value, 'previous');
+                return;
+              }
+
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleSelect(item.value);
+              }
+            }}
             onMouseEnter={() => setHoveredValue(item.value)}
             onMouseLeave={() => {
               setHoveredValue((currentValue) =>

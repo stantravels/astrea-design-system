@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--astrea-tab-element-spacing);
@@ -87,6 +88,14 @@
 
 .root[data-state='Disabled'][data-selected='true'][data-layout='Vertical'] {
   border-left-width: var(--astrea-tab-border-width-active);
+}
+
+.root[data-state='Focused']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--astrea-border-focus);
+  pointer-events: none;
 }
 
 .text {
