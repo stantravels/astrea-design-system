@@ -1,25 +1,36 @@
+import semanticColors from './figma/semantic-colors.json';
+import semanticSizing from './figma/semantic-sizing.json';
+import { getTokenReference } from './helpers';
+
 export const semanticTokens = {
-  color: {
-    surface: {
-      canvas: 'var(--ast-color-surface-canvas)',
-      subtle: 'var(--ast-color-surface-subtle)',
-      elevated: 'var(--ast-color-surface-elevated)',
-    },
-    text: {
-      primary: 'var(--ast-color-text-primary)',
-      secondary: 'var(--ast-color-text-secondary)',
-      inverse: 'var(--ast-color-text-inverse)',
-      brand: 'var(--ast-color-text-brand)',
-      danger: 'var(--ast-color-text-danger)',
-      success: 'var(--ast-color-text-success)',
-    },
-    fill: {
-      brandDefault: 'var(--ast-color-fill-brand-default)',
-      brandHover: 'var(--ast-color-fill-brand-hover)',
-      brandSubtle: 'var(--ast-color-fill-brand-subtle)',
-      neutralSubtle: 'var(--ast-color-fill-neutral-subtle)',
-      neutralHover: 'var(--ast-color-fill-neutral-hover)',
-      dangerSubtle: 'var(--ast-color-fill-danger-subtle)',
-    },
+  colors: {
+    borderGrey: getTokenReference(semanticColors, ['Border', 'astrea-border-grey']),
+    borderGreyStrong: getTokenReference(semanticColors, ['Border', 'astrea-border-grey-strong']),
+    borderGreyWeak: getTokenReference(semanticColors, ['Border', 'astrea-border-grey-weak']),
+    borderBrand: getTokenReference(semanticColors, ['Border', 'astrea-border-brand']),
+    surfaceBase: getTokenReference(semanticColors, ['Surface', 'astrea-surface-base']),
+    surfaceGrey: getTokenReference(semanticColors, ['Surface', 'astrea-surface-grey']),
+    surfaceGreyXWeak: getTokenReference(semanticColors, ['Surface', 'astrea-surface-grey-xweak']),
+    surfaceGreyStrong: getTokenReference(semanticColors, ['Surface', 'astrea-surface-grey-strong']),
+    surfaceBrandXWeak: getTokenReference(semanticColors, ['Surface', 'astrea-surface-brand-xweak']),
+    surfaceBrandXXWeak: getTokenReference(semanticColors, ['Surface', 'astrea-surface-brand-xxweak']),
+    textBrand: getTokenReference(semanticColors, ['Text', 'astrea-text-brand']),
+    textBrandStrong: getTokenReference(semanticColors, ['Text', 'astrea-text-brand-strong']),
+    textBrandXStrong: getTokenReference(semanticColors, ['Text', 'astrea-text-brand-xstrong']),
+    textPrimary: getTokenReference(semanticColors, ['Text', 'astrea-text-primary']),
+    textSecondary: getTokenReference(semanticColors, ['Text', 'astrea-text-secondary']),
+    iconBrand: getTokenReference(semanticColors, ['Icon', 'astrea-icon-brand']),
+    iconBrandStrong: getTokenReference(semanticColors, ['Icon', 'astrea-icon-brand-strong']),
+    iconBrandXStrong: getTokenReference(semanticColors, ['Icon', 'astrea-icon-brand-xstrong']),
+    iconGreyStrong: getTokenReference(semanticColors, ['Icon', 'astrea-icon-grey-strong']),
+  },
+  sizing: {
+    borderNone: getTokenReference(semanticSizing, ['Border', 'border-none']),
+    border1: getTokenReference(semanticSizing, ['Border', 'border-1']),
+    border3: getTokenReference(semanticSizing, ['Border', 'border-3']),
+    radiusNone: getTokenReference(semanticSizing, ['Radius', 'radius-none']),
+    paddingM: getTokenReference(semanticSizing, ['Padding', 'padding-m']),
+    paddingL: getTokenReference(semanticSizing, ['Padding', 'padding-l']),
+    paddingXl: getTokenReference(semanticSizing, ['Padding', 'padding-xl']),
   },
 } as const;

@@ -33,6 +33,7 @@
   --ast-primitive-shadow-lg: 0 24px 56px rgba(19, 34, 56, 0.14);
   --ast-primitive-font-sans: 'Inter', 'Segoe UI', sans-serif;
   --ast-primitive-font-mono: 'JetBrains Mono', 'SFMono-Regular', monospace;
+  --ast-primitive-font-brand: 'Titillium Web', 'Segoe UI', sans-serif;
 
   --ast-color-surface-canvas: var(--ast-primitive-color-slate-50);
   --ast-color-surface-subtle: var(--ast-primitive-color-white);
@@ -85,12 +86,54 @@
   --ast-space-8: var(--ast-primitive-spacing-8);
   --ast-font-family-sans: var(--ast-primitive-font-sans);
   --ast-font-family-mono: var(--ast-primitive-font-mono);
+  --ast-font-family-brand: var(--ast-primitive-font-brand);
   --ast-type-heading-display: 600 3.5rem/1.04 var(--ast-font-family-sans);
   --ast-type-heading-lg: 600 1.5rem/1.2 var(--ast-font-family-sans);
   --ast-type-body-md: 400 1rem/1.5 var(--ast-font-family-sans);
   --ast-type-body-sm: 400 0.875rem/1.45 var(--ast-font-family-sans);
   --ast-type-label-md: 600 0.875rem/1.2 var(--ast-font-family-sans);
   --ast-type-label-sm: 600 0.75rem/1.2 var(--ast-font-family-sans);
+  --ast-type-tab-label: 600 1rem/1.5 var(--ast-font-family-brand);
+  --ast-type-counter-label: 400 0.625rem/1.2 var(--ast-font-family-brand);
+
+  --astrea-tab-height: 48px;
+  --astrea-tab-h-padding: 16px;
+  --astrea-tab-v-padding: 12px;
+  --astrea-tab-element-spacing: 8px;
+  --astrea-tab-corner-radius: 0px;
+  --astrea-tab-border-width: 1px;
+  --astrea-tab-border-width-active: 3px;
+  --astrea-tab-border-color: #768594;
+  --astrea-tab-border-color-hover: #455b71;
+  --astrea-tab-border-color-pressed: #455b71;
+  --astrea-tab-border-color-active: #238475;
+  --astrea-tab-border-color-disabled: #a3adb7;
+  --astrea-tab-fill-color: #ffffff;
+  --astrea-tab-fill-color-hover: #e7f9f6;
+  --astrea-tab-fill-color-pressed: #d3f3ee;
+  --astrea-tab-fill-color-active: #ffffff;
+  --astrea-tab-fill-color-disabled: #ebeced;
+  --astrea-tab-icon-color: #217d6f;
+  --astrea-tab-icon-color-hover: #1e7164;
+  --astrea-tab-icon-color-pressed: #113f38;
+  --astrea-tab-icon-color-active: #113f38;
+  --astrea-tab-icon-color-disabled: #5c6f82;
+  --astrea-tab-text-color: #217d6f;
+  --astrea-tab-text-color-hover: #1e7164;
+  --astrea-tab-text-color-pressed: #195e54;
+  --astrea-tab-text-color-active: #000000;
+  --astrea-tab-text-color-disabled: #455b71;
+  --ast-counter-height: 16px;
+  --ast-counter-min-width: 16px;
+  --ast-counter-max-width: 24px;
+  --ast-counter-padding-x: 4px;
+  --ast-counter-corner-radius: 999px;
+  --ast-counter-background-default: #d9dadb;
+  --ast-counter-border-default: #a3adb7;
+  --ast-counter-text-default: #000000;
+  --ast-counter-background-active: #cc334d;
+  --ast-counter-border-active: #ffffff;
+  --ast-counter-text-active: #ffffff;
 }
 
 @media (max-width: 960px) {

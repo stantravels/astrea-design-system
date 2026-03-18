@@ -1,53 +1,48 @@
 import figma from '@figma/code-connect';
-import { TabNavigation, type TabsItem } from './Tabs';
+import { VerticalTabNavigation, type TabNavigationItem } from './Tabs';
 
-const verticalItems: TabsItem[] = [
+const verticalItems: TabNavigationItem[] = [
   {
-    value: 'overview',
-    label: 'Overview',
-    iconBefore: 'search',
+    value: 'tab-1',
+    text: 'Tab name',
   },
   {
-    value: 'tokens',
-    label: 'Tokens',
-    counter: '17',
+    value: 'tab-2',
+    text: 'Tab name',
   },
   {
-    value: 'patterns',
-    label: 'Patterns',
-    iconAfter: 'arrowRight',
+    value: 'tab-3',
+    text: 'Tab name',
   },
   {
-    value: 'guidelines',
-    label: 'Guidelines',
+    value: 'tab-4',
+    text: 'Tab name',
   },
   {
-    value: 'release-notes',
-    label: 'Release Notes',
+    value: 'tab-5',
+    text: 'Tab name',
   },
 ];
 
 figma.connect(
-  TabNavigation,
+  VerticalTabNavigation,
   'https://www.figma.com/design/2xS0QG1Xzg8rGGrENI9BHN/Astrea-Design-System-v2?m=auto&node-id=2123-10100&t=EquaG5YM9kSxEizz-1',
   {
     props: {
       selected: figma.enum('Selected', {
-        '1': 'overview',
-        '2': 'tokens',
-        '3': 'patterns',
-        '4': 'guidelines',
-        '5': 'release-notes',
+        '1': 'tab-1',
+        '2': 'tab-2',
+        '3': 'tab-3',
+        '4': 'tab-4',
+        '5': 'tab-5',
       }),
     },
     example: ({ selected }) => (
-      <TabNavigation
+      <VerticalTabNavigation
         ariaLabel="Vertical tab navigation"
-        fullWidth
+        defaultSelected="tab-1"
         items={verticalItems}
-        orientation="vertical"
-        showPanel={false}
-        value={selected}
+        selected={selected}
       />
     ),
   },

@@ -1,25 +1,19 @@
 import { useState } from 'react';
-import { Button, Input, Tabs } from './components';
+import { Button, HorizontalTabNavigation, Input } from './components';
 import './styles/index.css';
 
 const tabItems = [
   {
-    value: 'overview',
-    label: 'Overview',
-    content:
-      'Foundation-first component architecture with primitive, semantic, and component tokens.',
+    value: 'tab-1',
+    text: 'Tab name',
   },
   {
-    value: 'storybook',
-    label: 'Storybook',
-    content:
-      'Stories are colocated with components and tuned for controls, accessibility review, and future designer handoff.',
+    value: 'tab-2',
+    text: 'Tab name',
   },
   {
-    value: 'code-connect',
-    label: 'Code Connect',
-    content:
-      'The repository includes Figma Code Connect configuration so mappings can be published as soon as component node URLs are confirmed.',
+    value: 'tab-3',
+    text: 'Tab name',
   },
 ] as const;
 
@@ -57,7 +51,7 @@ function App() {
 
         <div className="playground-card">
           <h2>Tabs pattern</h2>
-          <Tabs items={tabItems} ariaLabel="Project overview" />
+          <HorizontalTabNavigation ariaLabel="Project overview" defaultSelected="tab-1" items={tabItems} />
         </div>
       </section>
     </main>

@@ -1,51 +1,48 @@
 import figma from '@figma/code-connect';
-import { TabNavigation, type TabsItem } from './Tabs';
+import { HorizontalTabNavigation, type TabNavigationItem } from './Tabs';
 
-const horizontalItems: TabsItem[] = [
+const horizontalItems: TabNavigationItem[] = [
   {
-    value: 'overview',
-    label: 'Overview',
+    value: 'tab-1',
+    text: 'Tab name',
   },
   {
-    value: 'tokens',
-    label: 'Tokens',
-    counter: '24',
+    value: 'tab-2',
+    text: 'Tab name',
   },
   {
-    value: 'patterns',
-    label: 'Patterns',
-    iconAfter: 'arrowRight',
+    value: 'tab-3',
+    text: 'Tab name',
   },
   {
-    value: 'guidelines',
-    label: 'Guidelines',
+    value: 'tab-4',
+    text: 'Tab name',
   },
   {
-    value: 'release-notes',
-    label: 'Release Notes',
+    value: 'tab-5',
+    text: 'Tab name',
   },
 ];
 
 figma.connect(
-  TabNavigation,
+  HorizontalTabNavigation,
   'https://www.figma.com/design/2xS0QG1Xzg8rGGrENI9BHN/Astrea-Design-System-v2?m=auto&node-id=2123-10049&t=EquaG5YM9kSxEizz-1',
   {
     props: {
       selected: figma.enum('Selected', {
-        '1': 'overview',
-        '2': 'tokens',
-        '3': 'patterns',
-        '4': 'guidelines',
-        '5': 'release-notes',
+        '1': 'tab-1',
+        '2': 'tab-2',
+        '3': 'tab-3',
+        '4': 'tab-4',
+        '5': 'tab-5',
       }),
     },
     example: ({ selected }) => (
-      <TabNavigation
+      <HorizontalTabNavigation
         ariaLabel="Horizontal tab navigation"
+        defaultSelected="tab-1"
         items={horizontalItems}
-        orientation="horizontal"
-        showPanel={false}
-        value={selected}
+        selected={selected}
       />
     ),
   },

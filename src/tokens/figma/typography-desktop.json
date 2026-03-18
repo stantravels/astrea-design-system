@@ -1,0 +1,251 @@
+{
+  "Family": {
+    "font-family-title": {
+      "$type": "string",
+      "$value": "Titillium Web",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7171",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    },
+    "font-family-body": {
+      "$type": "string",
+      "$value": "Titillium Web",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7173",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    },
+    "font-family-mono": {
+      "$type": "string",
+      "$value": "Courier New",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6086:2522",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "Weight": {
+    "font-weight-light": {
+      "$type": "string",
+      "$value": "Light",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7176",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    },
+    "font-weight-regular": {
+      "$type": "string",
+      "$value": "Regular",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7174",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    },
+    "font-weight-semibold": {
+      "$type": "string",
+      "$value": "SemiBold",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7175",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    },
+    "font-weight-bold": {
+      "$type": "string",
+      "$value": "Bold",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7177",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "Size": {
+    "font-size-3xs": {
+      "$type": "number",
+      "$value": 8,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2016:4208",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-2xs": {
+      "$type": "number",
+      "$value": 10,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2016:4209",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-xs": {
+      "$type": "number",
+      "$value": 12,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7178",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-s": {
+      "$type": "number",
+      "$value": 14,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7180",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-m": {
+      "$type": "number",
+      "$value": 16,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7181",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-l": {
+      "$type": "number",
+      "$value": 20,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7182",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-xl": {
+      "$type": "number",
+      "$value": 24,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7183",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-2xl": {
+      "$type": "number",
+      "$value": 28,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7184",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-3xl": {
+      "$type": "number",
+      "$value": 32,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7185",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-4xl": {
+      "$type": "number",
+      "$value": 40,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7186",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "font-size-5xl": {
+      "$type": "number",
+      "$value": 48,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3448:430",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "Line-height": {
+    "line-height-title": {
+      "$type": "number",
+      "$value": 120,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:514:3",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "line-height-body": {
+      "$type": "number",
+      "$value": 150,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7188",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.isOverride": true
+      }
+    },
+    "line-height-footnote": {
+      "$type": "number",
+      "$value": 120,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:509:7189",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Desktop"
+  }
+}

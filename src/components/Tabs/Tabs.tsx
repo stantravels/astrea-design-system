@@ -1,115 +1,135 @@
-import { useId, useState, type ReactNode } from 'react';
-import clsx from 'clsx';
-import { Icon, type IconName } from '../Icon/Icon';
+import { useId, useState } from 'react';
+import { Tab, type TabProps, type TabState } from '../Tab/Tab';
 import styles from './Tabs.module.css';
 
-export interface TabsItem {
+export interface TabNavigationItem {
   value: string;
-  label: string;
-  content?: ReactNode;
-  disabled?: boolean;
+  text: string;
+  iconBefore?: TabProps['iconBefore'];
+  iconAfter?: TabProps['iconAfter'];
   counter?: string;
-  iconBefore?: IconName;
-  iconAfter?: IconName;
 }
 
 export interface TabNavigationProps {
-  items: readonly TabsItem[];
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
+  items: readonly TabNavigationItem[];
+  selected?: string;
+  defaultSelected?: string;
+  onSelectedChange?: (value: string) => void;
   ariaLabel?: string;
-  size?: 'sm' | 'md';
-  fullWidth?: boolean;
-  orientation?: 'horizontal' | 'vertical';
-  showPanel?: boolean;
 }
 
-export type TabsProps = TabNavigationProps;
+interface TabNavigationBaseProps extends TabNavigationProps {
+  layout: 'Horizontal' | 'Vertical';
+}
 
-export function TabNavigation({
+function TabNavigationBase({
   items,
-  value,
-  defaultValue,
-  onValueChange,
-  ariaLabel = 'Tabs',
-  size = 'md',
-  fullWidth = false,
-  orientation = 'horizontal',
-  showPanel = true,
-}: TabNavigationProps) {
+  selected,
+  defaultSelected,
+  onSelectedChange,
+  ariaLabel = 'Tab navigation',
+  layout,
+}: TabNavigationBaseProps) {
   const generatedId = useId();
-  const fallbackValue = defaultValue ?? items.find((item) => !item.disabled)?.value ?? '';
+  const fallbackValue = defaultSelected ?? items[0]?.value ?? '';
   const [internalValue, setInternalValue] = useState(fallbackValue);
-  const selectedValue = value ?? internalValue;
-  const activeItem = items.find((item) => item.value === selectedValue) ?? items[0];
+  const [hoveredValue, setHoveredValue] = useState<string | null>(null);
+  const [pressedValue, setPressedValue] = useState<string | null>(null);
+  const [focusedValue, setFocusedValue] = useState<string | null>(null);
+  const selectedValue = selected ?? internalValue;
 
   const handleSelect = (nextValue: string) => {
-    if (value === undefined) {
+    if (selected === undefined) {
       setInternalValue(nextValue);
     }
 
-    onValueChange?.(nextValue);
+    onSelectedChange?.(nextValue);
+  };
+
+  const getVisualState = (value: string): TabState => {
+    if (pressedValue === value) {
+      return 'Pressed';
+    }
+
+    if (hoveredValue === value) {
+      return 'Hover';
+    }
+
+    if (focusedValue === value) {
+      return 'Focused';
+    }
+
+    return 'Default';
   };
 
   return (
-    <div className={styles.root}>
-      <div
-        aria-label={ariaLabel}
-        className={clsx(styles.list, fullWidth && styles.fullWidth)}
-        data-orientation={orientation}
-        data-size={size}
-        role="tablist"
-      >
-        {items.map((item) => {
-          const tabId = `${generatedId}-${item.value}-tab`;
-          const panelId = `${generatedId}-${item.value}-panel`;
-          const isSelected = item.value === activeItem?.value;
+    <div
+      aria-label={ariaLabel}
+      className={styles.root}
+      data-layout={layout}
+      role="tablist"
+    >
+      {items.map((item) => {
+        const isSelected = item.value === selectedValue;
 
-          return (
-            <button
-              key={item.value}
-              id={tabId}
-              type="button"
-              role="tab"
-              disabled={item.disabled}
-              aria-selected={isSelected}
-              aria-controls={panelId}
-              tabIndex={isSelected ? 0 : -1}
-              data-orientation={orientation}
-              data-selected={isSelected}
-              className={styles.trigger}
-              onClick={() => handleSelect(item.value)}
-            >
-              {item.iconBefore ? (
-                <span className={styles.icon}>
-                  <Icon name={item.iconBefore} />
-                </span>
-              ) : null}
-              <span>{item.label}</span>
-              {item.counter ? <span className={styles.counter}>{item.counter}</span> : null}
-              {item.iconAfter ? (
-                <span className={styles.icon}>
-                  <Icon name={item.iconAfter} />
-                </span>
-              ) : null}
-            </button>
-          );
-        })}
-      </div>
-
-      {showPanel && activeItem?.content ? (
-        <div
-          id={`${generatedId}-${activeItem.value}-panel`}
-          aria-labelledby={`${generatedId}-${activeItem.value}-tab`}
-          className={styles.panel}
-          role="tabpanel"
-        >
-          {activeItem.content}
-        </div>
-      ) : null}
+        return (
+          <button
+            key={item.value}
+            id={`${generatedId}-${item.value}`}
+            aria-selected={isSelected}
+            className={styles.button}
+            role="tab"
+            tabIndex={isSelected ? 0 : -1}
+            type="button"
+            onBlur={() => {
+              setFocusedValue((currentValue) =>
+                currentValue === item.value ? null : currentValue,
+              );
+              setPressedValue((currentValue) =>
+                currentValue === item.value ? null : currentValue,
+              );
+            }}
+            onClick={() => handleSelect(item.value)}
+            onFocus={() => setFocusedValue(item.value)}
+            onMouseEnter={() => setHoveredValue(item.value)}
+            onMouseLeave={() => {
+              setHoveredValue((currentValue) =>
+                currentValue === item.value ? null : currentValue,
+              );
+              setPressedValue((currentValue) =>
+                currentValue === item.value ? null : currentValue,
+              );
+            }}
+            onMouseUp={() =>
+              setPressedValue((currentValue) =>
+                currentValue === item.value ? null : currentValue,
+              )
+            }
+            onPointerDown={() => setPressedValue(item.value)}
+          >
+            <Tab
+              counter={item.counter}
+              iconAfter={item.iconAfter}
+              iconBefore={item.iconBefore}
+              layout={layout}
+              selected={isSelected}
+              showCounter={Boolean(item.counter)}
+              showIconAfter={Boolean(item.iconAfter)}
+              showIconBefore={Boolean(item.iconBefore)}
+              state={getVisualState(item.value)}
+              text={item.text}
+            />
+          </button>
+        );
+      })}
     </div>
   );
 }
 
-export const Tabs = TabNavigation;
+export function HorizontalTabNavigation(props: TabNavigationProps) {
+  return <TabNavigationBase {...props} layout="Horizontal" />;
+}
+
+export function VerticalTabNavigation(props: TabNavigationProps) {
+  return <TabNavigationBase {...props} layout="Vertical" />;
+}

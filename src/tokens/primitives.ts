@@ -1,37 +1,37 @@
+import primitiveColors from './figma/primitives-colors.json';
+import primitiveSizing from './figma/primitives-sizing.json';
+import typographyDesktop from './figma/typography-desktop.json';
+import { getTokenReference } from './helpers';
+
 export const primitiveTokens = {
-  color: {
-    white: '#ffffff',
-    slate50: '#f7f8fc',
-    slate100: '#eef1f8',
-    slate200: '#d8dfeb',
-    slate300: '#b9c5d8',
-    slate500: '#60708c',
-    slate700: '#334155',
-    slate900: '#132238',
-    blue100: '#deebff',
-    blue300: '#82a8ff',
-    blue500: '#3454d1',
-    blue700: '#1f3284',
-    red100: '#ffe4e8',
-    red500: '#d92d20',
-    green100: '#def7e8',
-    green500: '#067647',
+  colors: {
+    brand500: getTokenReference(primitiveColors, ['Brand', 'brand-500']),
+    brand600: getTokenReference(primitiveColors, ['Brand', 'brand-600']),
+    brand700: getTokenReference(primitiveColors, ['Brand', 'brand-700']),
+    brand800: getTokenReference(primitiveColors, ['Brand', 'brand-800']),
+    brand900: getTokenReference(primitiveColors, ['Brand', 'brand-900']),
+    grey500: getTokenReference(primitiveColors, ['Greyscale', 'grey-500']),
+    grey600: getTokenReference(primitiveColors, ['Greyscale', 'grey-600']),
+    grey700: getTokenReference(primitiveColors, ['Greyscale', 'grey-700']),
+    grey300: getTokenReference(primitiveColors, ['Greyscale', 'grey-300']),
+    grey200: getTokenReference(primitiveColors, ['Greyscale', 'grey-200']),
+    white: getTokenReference(primitiveColors, ['Greyscale', 'white']),
   },
-  spacing: {
-    1: '4px',
-    2: '8px',
-    3: '12px',
-    4: '16px',
-    5: '20px',
-    6: '24px',
-    8: '32px',
-    10: '40px',
+  sizing: {
+    scale0: getTokenReference(primitiveSizing, ['Scale', '0']),
+    scale1: getTokenReference(primitiveSizing, ['Scale', '1']),
+    scale3: getTokenReference(primitiveSizing, ['Scale', '3']),
+    scale8: getTokenReference(primitiveSizing, ['Scale', '8']),
+    scale10: getTokenReference(primitiveSizing, ['Scale', '10']),
+    scale12: getTokenReference(primitiveSizing, ['Scale', '12']),
+    scale16: getTokenReference(primitiveSizing, ['Scale', '16']),
   },
-  radius: {
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    pill: '999px',
+  typography: {
+    fontFamilyBody: getTokenReference(typographyDesktop, ['Family', 'font-family-body']),
+    fontWeightRegular: getTokenReference(typographyDesktop, ['Weight', 'font-weight-regular']),
+    fontWeightSemibold: getTokenReference(typographyDesktop, ['Weight', 'font-weight-semibold']),
+    fontSize2xs: getTokenReference(typographyDesktop, ['Size', 'font-size-2xs']),
+    fontSizeM: getTokenReference(typographyDesktop, ['Size', 'font-size-m']),
+    lineHeightBody: getTokenReference(typographyDesktop, ['Line-height', 'line-height-body']),
   },
 } as const;
