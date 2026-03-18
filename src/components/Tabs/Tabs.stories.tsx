@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs } from './Tabs';
+import { TabNavigation } from './Tabs';
 
-const demoItems = [
+const horizontalItems = [
   {
     value: 'overview',
     label: 'Overview',
@@ -10,26 +10,54 @@ const demoItems = [
   {
     value: 'tokens',
     label: 'Tokens',
-    badge: '24',
+    counter: '24',
     content: 'Token documentation and implementation notes.',
   },
   {
     value: 'patterns',
     label: 'Patterns',
+    iconAfter: 'arrowRight',
     content: 'Patterns, responsive behavior, and composition guidance.',
   },
 ] as const;
 
+const verticalItems = [
+  {
+    value: 'overview',
+    label: 'Overview',
+    iconBefore: 'search',
+  },
+  {
+    value: 'tokens',
+    label: 'Tokens',
+    counter: '17',
+  },
+  {
+    value: 'patterns',
+    label: 'Patterns',
+    iconAfter: 'arrowRight',
+  },
+  {
+    value: 'guidelines',
+    label: 'Guidelines',
+  },
+  {
+    value: 'release-notes',
+    label: 'Release Notes',
+  },
+] as const;
+
 const meta = {
-  title: 'Components/Tabs',
-  component: Tabs,
+  title: 'Components/Tab Navigation',
+  component: TabNavigation,
   tags: ['autodocs'],
   args: {
-    items: demoItems,
+    items: horizontalItems,
     size: 'md',
     fullWidth: false,
+    orientation: 'horizontal',
   },
-} satisfies Meta<typeof Tabs>;
+} satisfies Meta<typeof TabNavigation>;
 
 export default meta;
 
@@ -37,9 +65,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
-export const FullWidth: Story = {
+export const Horizontal: Story = {
   args: {
+    items: horizontalItems,
+    orientation: 'horizontal',
+  },
+  parameters: {
+    layout: 'padded',
+  },
+};
+
+export const Vertical: Story = {
+  args: {
+    items: verticalItems,
+    orientation: 'vertical',
     fullWidth: true,
+    showPanel: false,
   },
   parameters: {
     layout: 'padded',

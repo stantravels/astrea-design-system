@@ -1,5 +1,6 @@
 import { useId, useState, type ReactNode } from 'react';
 import clsx from 'clsx';
+import { Icon, type IconName } from '../Icon/Icon';
 import styles from './Tabs.module.css';
 
 export interface TabsItem {
@@ -7,10 +8,12 @@ export interface TabsItem {
   label: string;
   content?: ReactNode;
   disabled?: boolean;
-  badge?: string;
+  counter?: string;
+  iconBefore?: IconName;
+  iconAfter?: IconName;
 }
 
-export interface TabsProps {
+export interface TabNavigationProps {
   items: readonly TabsItem[];
   value?: string;
   defaultValue?: string;
@@ -18,9 +21,13 @@ export interface TabsProps {
   ariaLabel?: string;
   size?: 'sm' | 'md';
   fullWidth?: boolean;
+  orientation?: 'horizontal' | 'vertical';
+  showPanel?: boolean;
 }
 
-export function Tabs({
+export type TabsProps = TabNavigationProps;
+
+export function TabNavigation({
   items,
   value,
   defaultValue,
@@ -28,7 +35,9 @@ export function Tabs({
   ariaLabel = 'Tabs',
   size = 'md',
   fullWidth = false,
-}: TabsProps) {
+  orientation = 'horizontal',
+  showPanel = true,
+}: TabNavigationProps) {
   const generatedId = useId();
   const fallbackValue = defaultValue ?? items.find((item) => !item.disabled)?.value ?? '';
   const [internalValue, setInternalValue] = useState(fallbackValue);
@@ -48,6 +57,7 @@ export function Tabs({
       <div
         aria-label={ariaLabel}
         className={clsx(styles.list, fullWidth && styles.fullWidth)}
+        data-orientation={orientation}
         data-size={size}
         role="tablist"
       >
@@ -66,18 +76,29 @@ export function Tabs({
               aria-selected={isSelected}
               aria-controls={panelId}
               tabIndex={isSelected ? 0 : -1}
+              data-orientation={orientation}
               data-selected={isSelected}
               className={styles.trigger}
               onClick={() => handleSelect(item.value)}
             >
+              {item.iconBefore ? (
+                <span className={styles.icon}>
+                  <Icon name={item.iconBefore} />
+                </span>
+              ) : null}
               <span>{item.label}</span>
-              {item.badge ? <span className={styles.badge}>{item.badge}</span> : null}
+              {item.counter ? <span className={styles.counter}>{item.counter}</span> : null}
+              {item.iconAfter ? (
+                <span className={styles.icon}>
+                  <Icon name={item.iconAfter} />
+                </span>
+              ) : null}
             </button>
           );
         })}
       </div>
 
-      {activeItem?.content ? (
+      {showPanel && activeItem?.content ? (
         <div
           id={`${generatedId}-${activeItem.value}-panel`}
           aria-labelledby={`${generatedId}-${activeItem.value}-tab`}
@@ -90,3 +111,5 @@ export function Tabs({
     </div>
   );
 }
+
+export const Tabs = TabNavigation;
