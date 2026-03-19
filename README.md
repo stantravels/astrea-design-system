@@ -29,14 +29,14 @@ React + TypeScript + Vite + Storybook starter for the Astrea design system.
 
 ## Token Sync From Figma JSON
 
-Проект использует 3 уровня токенов:
-- `primitive` -> базовые значения
-- `semantic` -> алиасы на primitive
-- `component` -> алиасы на semantic (сейчас подключен слой Tab)
+The project uses a 3-level token hierarchy:
+- `primitive` -> base values
+- `semantic` -> aliases mapped to primitive tokens
+- `component` -> aliases mapped to semantic tokens, currently implemented for `Tab`
 
-Короткий рабочий цикл после новой выгрузки из Figma:
+Recommended workflow after exporting updated JSON files from Figma:
 
-1. Обновите JSON-файлы в `src/tokens/figma`:
+1. Update the JSON files in `src/tokens/figma`:
    - `primitives-colors.json`
    - `primitives-sizing.json`
    - `typography-desktop.json`
@@ -44,19 +44,19 @@ React + TypeScript + Vite + Storybook starter for the Astrea design system.
    - `semantic-sizing.json`
    - `tab-component-colors.json`
    - `tab-component-sizing.json`
-2. Сгенерируйте SCSS-токены:
+2. Generate SCSS token files:
    - `npm run tokens:generate`
-3. Проверьте синхронизацию:
+3. Verify token sync:
    - `npm run tokens:sync-report`
-4. Запустите визуальную проверку в Storybook:
+4. Run a visual check in Storybook:
    - `npm run storybook`
 
-Что генерируется автоматически:
+Auto-generated files:
 - `src/styles/tokens/_primitive.generated.scss`
 - `src/styles/tokens/_semantic.generated.scss`
 - `src/styles/tokens/_tab.generated.scss`
 
-Важно:
-- generated-файлы не редактируются вручную;
-- ручные developer-friendly алиасы и составные переменные хранятся в `src/styles/tokens/_aliases.scss`;
-- точка сборки всех токенов: `src/styles/tokens.scss`.
+Important:
+- generated files should not be edited manually;
+- developer-friendly aliases and composed runtime variables live in `src/styles/tokens/_aliases.scss`;
+- the single entry point for token assembly is `src/styles/tokens.scss`.

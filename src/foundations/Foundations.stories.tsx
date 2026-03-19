@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
-import { componentTokens, primitiveTokens, semanticTokens } from '../tokens';
+import { primitiveTokens, semanticTokens } from '../tokens';
 import { collectTokenReferences, isTokenReference, type TokenCollection, type TokenReference } from '../tokens/helpers';
-import { breakpoints, grid, typography } from './index';
 
 type ColorTokenReference = TokenReference & { value: string };
+
+type HierarchyRow = {
+  level: string;
+  description: string;
+};
 
 function Section({
   title,
@@ -32,8 +36,16 @@ function Section({
 
 function TokenTable({
   tokens,
+  valueLabel = 'Value',
+  aliasLabel = 'Alias',
+  showAlias = true,
+  formatAlias = (token: TokenReference) => token.alias?.targetName ?? 'Primitive value',
 }: {
   tokens: Array<TokenReference>;
+  valueLabel?: string;
+  aliasLabel?: string;
+  showAlias?: boolean;
+  formatAlias?: (token: TokenReference) => string;
 }) {
   return (
     <div
@@ -46,8 +58,8 @@ function TokenTable({
         <thead>
           <tr>
             <th style={{ padding: '12px', textAlign: 'left' }}>Token</th>
-            <th style={{ padding: '12px', textAlign: 'left' }}>Value</th>
-            <th style={{ padding: '12px', textAlign: 'left' }}>Alias</th>
+            <th style={{ padding: '12px', textAlign: 'left' }}>{valueLabel}</th>
+            {showAlias ? <th style={{ padding: '12px', textAlign: 'left' }}>{aliasLabel}</th> : null}
           </tr>
         </thead>
         <tbody>
@@ -55,10 +67,35 @@ function TokenTable({
             <tr key={token.name} style={{ borderTop: '1px solid var(--astrea-border-grey-weak)' }}>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{token.name}</td>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{String(token.value)}</td>
-              <td style={{ padding: '12px', verticalAlign: 'top' }}>
-                {token.alias?.targetName ?? 'Primitive value'}
-                {token.alias?.targetSetName ? ` (${token.alias.targetSetName})` : ''}
-              </td>
+              {showAlias ? <td style={{ padding: '12px', verticalAlign: 'top' }}>{formatAlias(token)}</td> : null}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function HierarchyTable({ rows }: { rows: Array<HierarchyRow> }) {
+  return (
+    <div
+      style={{
+        border: '1px solid var(--astrea-border-grey-weak)',
+        background: 'var(--astrea-surface-base)',
+      }}
+    >
+      <table style={{ width: '100%', borderCollapse: 'collapse', font: 'var(--astrea-type-body-sm)' }}>
+        <thead>
+          <tr>
+            <th style={{ padding: '12px', textAlign: 'left' }}>Level</th>
+            <th style={{ padding: '12px', textAlign: 'left' }}>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.level} style={{ borderTop: '1px solid var(--astrea-border-grey-weak)' }}>
+              <td style={{ padding: '12px', verticalAlign: 'top' }}>{row.level}</td>
+              <td style={{ padding: '12px', verticalAlign: 'top' }}>{row.description}</td>
             </tr>
           ))}
         </tbody>
@@ -69,8 +106,14 @@ function TokenTable({
 
 function ColorTable({
   tokens,
+  aliasLabel = 'Alias',
+  showAlias = true,
+  formatAlias = (token: ColorTokenReference) => token.alias?.targetName ?? 'Primitive value',
 }: {
   tokens: Array<ColorTokenReference>;
+  aliasLabel?: string;
+  showAlias?: boolean;
+  formatAlias?: (token: ColorTokenReference) => string;
 }) {
   return (
     <div
@@ -85,7 +128,7 @@ function ColorTable({
             <th style={{ padding: '12px', textAlign: 'left' }}>Preview</th>
             <th style={{ padding: '12px', textAlign: 'left' }}>Token</th>
             <th style={{ padding: '12px', textAlign: 'left' }}>Value</th>
-            <th style={{ padding: '12px', textAlign: 'left' }}>Alias</th>
+            {showAlias ? <th style={{ padding: '12px', textAlign: 'left' }}>{aliasLabel}</th> : null}
           </tr>
         </thead>
         <tbody>
@@ -103,10 +146,7 @@ function ColorTable({
               </td>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{token.name}</td>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{token.value}</td>
-              <td style={{ padding: '12px', verticalAlign: 'top' }}>
-                {token.alias?.targetName ?? 'Primitive value'}
-                {token.alias?.targetSetName ? ` (${token.alias.targetSetName})` : ''}
-              </td>
+              {showAlias ? <td style={{ padding: '12px', verticalAlign: 'top' }}>{formatAlias(token)}</td> : null}
             </tr>
           ))}
         </tbody>
@@ -141,25 +181,19 @@ const meta = {
           title="Token hierarchy"
           description="Current foundations focus on the exported Figma token layers: primitive, semantic, and component."
         >
-          <TokenTable
-            tokens={[
+          <HierarchyTable
+            rows={[
               {
-                name: 'Hierarchy/primitive',
-                type: 'description',
-                value: 'Base values',
-                alias: { targetName: 'Primitive / Colors + Primitive / Sizing + Desktop' },
+                level: 'Primitive',
+                description: 'Base values exported from Figma primitive collections.',
               },
               {
-                name: 'Hierarchy/semantic',
-                type: 'description',
-                value: 'Meaningful aliases',
-                alias: { targetName: 'Semantic / Colors + Semantic / Sizing' },
+                level: 'Semantic',
+                description: 'Meaningful aliases that map primitive values to design intent.',
               },
               {
-                name: 'Hierarchy/component',
-                type: 'description',
-                value: 'Component-specific mapping',
-                alias: { targetName: 'Component / Tab' },
+                level: 'Component',
+                description: 'Component-specific tokens that map semantic values to implementation.',
               },
             ]}
           />
@@ -175,6 +209,7 @@ const meta = {
                     ...token,
                     value: String(token.value),
                   }))}
+                  showAlias={false}
                 />
               </div>
             ))}
@@ -191,6 +226,8 @@ const meta = {
                     ...token,
                     value: String(token.value),
                   }))}
+                  aliasLabel="Primitive alias"
+                  formatAlias={(token) => token.alias?.targetName ?? 'Primitive value'}
                 />
               </div>
             ))}
@@ -198,15 +235,15 @@ const meta = {
         </Section>
 
         <Section title="Primitive sizing" description="All primitive spacing, radius, border, and scale values exported from Figma.">
-          <TokenTable tokens={primitiveSizingTokens} />
+          <TokenTable tokens={primitiveSizingTokens} showAlias={false} />
         </Section>
 
         <Section title="Semantic sizing" description="All semantic sizing aliases exported from Figma.">
-          <TokenTable tokens={semanticSizingTokens} />
-        </Section>
-
-        <Section title="Tab component tokens" description="Component-level token mapping currently implemented in code.">
-          <TokenTable tokens={Object.values(componentTokens.tab)} />
+          <TokenTable
+            tokens={semanticSizingTokens}
+            aliasLabel="Primitive alias"
+            formatAlias={(token) => token.alias?.targetName ?? 'Primitive value'}
+          />
         </Section>
 
         <Section title="Typography" description="All typography tokens from the Figma desktop collection.">
@@ -214,24 +251,10 @@ const meta = {
             {typographyGroups.map(([groupName, groupTokens]) => (
               <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
                 <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
-                <TokenTable tokens={getCollectionTokens(groupTokens)} />
+                <TokenTable tokens={getCollectionTokens(groupTokens)} showAlias={false} />
               </div>
             ))}
           </div>
-        </Section>
-
-        <Section title="Layout" description="Project breakpoints, grid settings, and named typography aliases exposed for implementation.">
-          <pre
-            style={{
-              margin: 0,
-              padding: '16px',
-              border: '1px solid var(--astrea-border-grey-weak)',
-              background: 'var(--astrea-surface-base)',
-              font: '0.8125rem/1.5 var(--astrea-font-family-mono)',
-            }}
-          >
-            {JSON.stringify({ breakpoints, grid, typography }, null, 2)}
-          </pre>
         </Section>
       </div>
     );
