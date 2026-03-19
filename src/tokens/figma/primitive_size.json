@@ -130,7 +130,7 @@
     },
     "52": {
       "$type": "number",
-      "$value": 48,
+      "$value": 52,
       "$extensions": {
         "com.figma.variableId": "VariableID:560:6119",
         "com.figma.isOverride": true
@@ -138,7 +138,7 @@
     },
     "56": {
       "$type": "number",
-      "$value": 48,
+      "$value": 56,
       "$extensions": {
         "com.figma.variableId": "VariableID:560:6120",
         "com.figma.isOverride": true
@@ -152,11 +152,43 @@
         "com.figma.isOverride": true
       }
     },
+    "64": {
+      "$type": "number",
+      "$value": 64,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:10088:771",
+        "com.figma.isOverride": true
+      }
+    },
+    "68": {
+      "$type": "number",
+      "$value": 68,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:10088:772",
+        "com.figma.isOverride": true
+      }
+    },
+    "72": {
+      "$type": "number",
+      "$value": 72,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:10088:773",
+        "com.figma.isOverride": true
+      }
+    },
     "76": {
       "$type": "number",
       "$value": 76,
       "$extensions": {
         "com.figma.variableId": "VariableID:6213:12661",
+        "com.figma.isOverride": true
+      }
+    },
+    "80": {
+      "$type": "number",
+      "$value": 80,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:10088:774",
         "com.figma.isOverride": true
       }
     },
@@ -178,6 +210,6 @@
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Mode 1"
+    "com.figma.modeName": "Default"
   }
 }

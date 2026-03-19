@@ -1,6 +1,6 @@
 {
   "Border": {
-    "border-none": {
+    "none": {
       "$type": "number",
       "$value": 0,
       "$extensions": {
@@ -12,12 +12,12 @@
           "targetVariableId": "VariableID:b4234d23f98cdbcd849ffab1f3ef4302bca43069/-1:-1",
           "targetVariableName": "Scale/0",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "border-1": {
+    "s": {
       "$type": "number",
       "$value": 1,
       "$extensions": {
@@ -29,12 +29,12 @@
           "targetVariableId": "VariableID:bf384ba93fe7d80d82bc232121651d56157da6b4/-1:-1",
           "targetVariableName": "Scale/1",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "border-2": {
+    "m": {
       "$type": "number",
       "$value": 2,
       "$extensions": {
@@ -46,12 +46,12 @@
           "targetVariableId": "VariableID:ee150ccb09bdc6c5a26de07b5bd67f62e120f971/-1:-1",
           "targetVariableName": "Scale/2",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "border-3": {
+    "l": {
       "$type": "number",
       "$value": 3,
       "$extensions": {
@@ -63,12 +63,12 @@
           "targetVariableId": "VariableID:ef8df03a50f8e1c748813ac4acccbf2959a6686d/-1:-1",
           "targetVariableName": "Scale/3",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "border-4": {
+    "xl": {
       "$type": "number",
       "$value": 4,
       "$extensions": {
@@ -80,14 +80,14 @@
           "targetVariableId": "VariableID:0cd6e2a6b9796e20947715368073b94820f9d96c/-1:-1",
           "targetVariableName": "Scale/4",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     }
   },
   "Padding": {
-    "padding-negative": {
+    "negative": {
       "$type": "number",
       "$value": -1,
       "$extensions": {
@@ -99,12 +99,12 @@
           "targetVariableId": "VariableID:b14ca137fb86ab5adfbdf9970f760c5f93eeb6e9/-1:-1",
           "targetVariableName": "Scale/-1",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-none": {
+    "none": {
       "$type": "number",
       "$value": 0,
       "$extensions": {
@@ -116,12 +116,12 @@
           "targetVariableId": "VariableID:b4234d23f98cdbcd849ffab1f3ef4302bca43069/-1:-1",
           "targetVariableName": "Scale/0",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-xs": {
+    "xs": {
       "$type": "number",
       "$value": 2,
       "$extensions": {
@@ -133,12 +133,12 @@
           "targetVariableId": "VariableID:ee150ccb09bdc6c5a26de07b5bd67f62e120f971/-1:-1",
           "targetVariableName": "Scale/2",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-s": {
+    "s": {
       "$type": "number",
       "$value": 4,
       "$extensions": {
@@ -150,12 +150,12 @@
           "targetVariableId": "VariableID:0cd6e2a6b9796e20947715368073b94820f9d96c/-1:-1",
           "targetVariableName": "Scale/4",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-m": {
+    "m": {
       "$type": "number",
       "$value": 8,
       "$extensions": {
@@ -167,12 +167,12 @@
           "targetVariableId": "VariableID:cd9c637cce8cd6efc2e2a7e21409f8bf5490a1a9/-1:-1",
           "targetVariableName": "Scale/8",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-l": {
+    "l": {
       "$type": "number",
       "$value": 12,
       "$extensions": {
@@ -184,12 +184,12 @@
           "targetVariableId": "VariableID:9d544e3cbf7ae082d6f45c1e29b12fbd5f0128cb/-1:-1",
           "targetVariableName": "Scale/12",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-xl": {
+    "xl": {
       "$type": "number",
       "$value": 16,
       "$extensions": {
@@ -201,12 +201,12 @@
           "targetVariableId": "VariableID:87f5531ce6f7c7cc47a9e4d18a5a2fb7e3d382a6/-1:-1",
           "targetVariableName": "Scale/16",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-2xl": {
+    "2xl": {
       "$type": "number",
       "$value": 20,
       "$extensions": {
@@ -218,12 +218,12 @@
           "targetVariableId": "VariableID:9b4082129633bbb8b1a585247f116f1170433784/-1:-1",
           "targetVariableName": "Scale/20",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-3xl": {
+    "3xl": {
       "$type": "number",
       "$value": 24,
       "$extensions": {
@@ -235,12 +235,12 @@
           "targetVariableId": "VariableID:322d9e6d722a4ae0e23f3637cbecefd6edd202e2/-1:-1",
           "targetVariableName": "Scale/24",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-4xl": {
+    "4xl": {
       "$type": "number",
       "$value": 32,
       "$extensions": {
@@ -252,12 +252,12 @@
           "targetVariableId": "VariableID:aa2f19ed23c3bea9ccc2894a0eb3b7a9438ba0c2/-1:-1",
           "targetVariableName": "Scale/32",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-5xl": {
+    "5xl": {
       "$type": "number",
       "$value": 44,
       "$extensions": {
@@ -269,12 +269,12 @@
           "targetVariableId": "VariableID:083670785ad4dc5229db9f264d5c8cbf8bade24b/-1:-1",
           "targetVariableName": "Scale/44",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "padding-6xl": {
+    "6xl": {
       "$type": "number",
       "$value": 76,
       "$extensions": {
@@ -286,14 +286,14 @@
           "targetVariableId": "VariableID:08582f47d53cabdafd21b7f2ca1617d232c6ff25/-1:-1",
           "targetVariableName": "Scale/76",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     }
   },
   "Radius": {
-    "radius-none": {
+    "none": {
       "$type": "number",
       "$value": 0,
       "$extensions": {
@@ -305,12 +305,12 @@
           "targetVariableId": "VariableID:b4234d23f98cdbcd849ffab1f3ef4302bca43069/-1:-1",
           "targetVariableName": "Scale/0",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-xs": {
+    "xs": {
       "$type": "number",
       "$value": 2,
       "$extensions": {
@@ -322,12 +322,12 @@
           "targetVariableId": "VariableID:ee150ccb09bdc6c5a26de07b5bd67f62e120f971/-1:-1",
           "targetVariableName": "Scale/2",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-s": {
+    "s": {
       "$type": "number",
       "$value": 4,
       "$extensions": {
@@ -339,12 +339,12 @@
           "targetVariableId": "VariableID:0cd6e2a6b9796e20947715368073b94820f9d96c/-1:-1",
           "targetVariableName": "Scale/4",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-m": {
+    "m": {
       "$type": "number",
       "$value": 8,
       "$extensions": {
@@ -356,12 +356,12 @@
           "targetVariableId": "VariableID:cd9c637cce8cd6efc2e2a7e21409f8bf5490a1a9/-1:-1",
           "targetVariableName": "Scale/8",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-l": {
+    "l": {
       "$type": "number",
       "$value": 16,
       "$extensions": {
@@ -373,12 +373,12 @@
           "targetVariableId": "VariableID:87f5531ce6f7c7cc47a9e4d18a5a2fb7e3d382a6/-1:-1",
           "targetVariableName": "Scale/16",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-xl": {
+    "xl": {
       "$type": "number",
       "$value": 24,
       "$extensions": {
@@ -390,12 +390,12 @@
           "targetVariableId": "VariableID:322d9e6d722a4ae0e23f3637cbecefd6edd202e2/-1:-1",
           "targetVariableName": "Scale/24",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-2xl": {
+    "2xl": {
       "$type": "number",
       "$value": 32,
       "$extensions": {
@@ -407,12 +407,12 @@
           "targetVariableId": "VariableID:aa2f19ed23c3bea9ccc2894a0eb3b7a9438ba0c2/-1:-1",
           "targetVariableName": "Scale/32",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "radius-full": {
+    "full": {
       "$type": "number",
       "$value": 999,
       "$extensions": {
@@ -424,14 +424,14 @@
           "targetVariableId": "VariableID:c98c1f6fe4b338267b2d9c5c7e5d65ebe6b8b676/-1:-1",
           "targetVariableName": "Scale/full",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     }
   },
   "Size": {
-    "size-2xs": {
+    "2xs": {
       "$type": "number",
       "$value": 8,
       "$extensions": {
@@ -443,12 +443,12 @@
           "targetVariableId": "VariableID:cd9c637cce8cd6efc2e2a7e21409f8bf5490a1a9/-1:-1",
           "targetVariableName": "Scale/8",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-xs": {
+    "xs": {
       "$type": "number",
       "$value": 12,
       "$extensions": {
@@ -460,12 +460,12 @@
           "targetVariableId": "VariableID:9d544e3cbf7ae082d6f45c1e29b12fbd5f0128cb/-1:-1",
           "targetVariableName": "Scale/12",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-s": {
+    "s": {
       "$type": "number",
       "$value": 16,
       "$extensions": {
@@ -477,12 +477,12 @@
           "targetVariableId": "VariableID:87f5531ce6f7c7cc47a9e4d18a5a2fb7e3d382a6/-1:-1",
           "targetVariableName": "Scale/16",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-m": {
+    "m": {
       "$type": "number",
       "$value": 20,
       "$extensions": {
@@ -494,12 +494,12 @@
           "targetVariableId": "VariableID:9b4082129633bbb8b1a585247f116f1170433784/-1:-1",
           "targetVariableName": "Scale/20",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-l": {
+    "l": {
       "$type": "number",
       "$value": 24,
       "$extensions": {
@@ -511,12 +511,12 @@
           "targetVariableId": "VariableID:322d9e6d722a4ae0e23f3637cbecefd6edd202e2/-1:-1",
           "targetVariableName": "Scale/24",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-xl": {
+    "xl": {
       "$type": "number",
       "$value": 32,
       "$extensions": {
@@ -528,12 +528,12 @@
           "targetVariableId": "VariableID:aa2f19ed23c3bea9ccc2894a0eb3b7a9438ba0c2/-1:-1",
           "targetVariableName": "Scale/32",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-2xl": {
+    "2xl": {
       "$type": "number",
       "$value": 36,
       "$extensions": {
@@ -545,12 +545,12 @@
           "targetVariableId": "VariableID:e42274dd71a58ecc35ab9b9c6ac27ebff74bf364/-1:-1",
           "targetVariableName": "Scale/36",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-3xl": {
+    "3xl": {
       "$type": "number",
       "$value": 48,
       "$extensions": {
@@ -562,12 +562,12 @@
           "targetVariableId": "VariableID:ed2416db4443761626e7b2e8f34b9bd9fd2d686e/-1:-1",
           "targetVariableName": "Scale/48",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     },
-    "size-4xl": {
+    "4xl": {
       "$type": "number",
       "$value": 60,
       "$extensions": {
@@ -579,13 +579,13 @@
           "targetVariableId": "VariableID:ddc9e46ffb43e2c399b383df19bcb4c2bb85ce10/-1:-1",
           "targetVariableName": "Scale/60",
           "targetVariableSetId": "VariableCollectionId:f181633b6187555f4dc198d3c42cf010f56b3cea/-1:-1",
-          "targetVariableSetName": "Primitive / Sizing"
+          "targetVariableSetName": "Primitive / Size"
         },
         "com.figma.isOverride": true
       }
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Value"
+    "com.figma.modeName": "Default"
   }
 }
