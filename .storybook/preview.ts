@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
-import '../src/styles/index.css';
+import '../src/styles/index.scss';
 
 const preview: Preview = {
   parameters: {
@@ -20,9 +20,9 @@ const preview: Preview = {
     backgrounds: {
       default: 'Canvas',
       values: [
-        { name: 'Canvas', value: 'var(--ast-color-surface-canvas)' },
-        { name: 'Subtle', value: 'var(--ast-color-surface-subtle)' },
-        { name: 'Elevated', value: 'var(--ast-color-surface-elevated)' },
+        { name: 'Canvas', value: 'var(--astrea-surface-grey-xweak)' },
+        { name: 'Base', value: 'var(--astrea-surface-base)' },
+        { name: 'Brand Weak', value: 'var(--astrea-surface-brand-xxweak)' },
       ],
     },
     docs: {

@@ -1,5 +1,5 @@
 import { HorizontalTabNavigation } from './components';
-import './styles/index.css';
+import './styles/index.scss';
 
 const tabItems = [
   {

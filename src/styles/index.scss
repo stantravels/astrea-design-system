@@ -1,5 +1,5 @@
+@use './tokens';
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
-@import './tokens.css';
 
 *,
 *::before,
@@ -84,6 +84,13 @@ svg {
 }
 
 @media (max-width: 960px) {
+  :root {
+    --astrea-type-heading-display:
+      var(--astrea-font-weight-semibold)
+      var(--astrea-font-size-xl) / var(--astrea-line-height-title)
+      var(--astrea-font-family-title);
+  }
+
   .playground-shell {
     width: min(100% - 24px, 960px);
     padding: 32px 0 48px;
