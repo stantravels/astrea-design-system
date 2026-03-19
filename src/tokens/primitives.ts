@@ -22,7 +22,6 @@ export const primitiveTokens = {
     scale1: getTokenReference(primitiveSizing, ['Scale', '1']),
     scale3: getTokenReference(primitiveSizing, ['Scale', '3']),
     scale8: getTokenReference(primitiveSizing, ['Scale', '8']),
-    scale10: getTokenReference(primitiveSizing, ['Scale', '10']),
     scale12: getTokenReference(primitiveSizing, ['Scale', '12']),
     scale16: getTokenReference(primitiveSizing, ['Scale', '16']),
   },
