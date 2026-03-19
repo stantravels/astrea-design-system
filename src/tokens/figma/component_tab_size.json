@@ -26,7 +26,7 @@
       ],
       "com.figma.aliasData": {
         "targetVariableId": "VariableID:a28d9bb0bb8b92fa22d191a8e3f9fe7680f85fd6/-1:-1",
-        "targetVariableName": "Border/l",
+        "targetVariableName": "Border/width-l",
         "targetVariableSetId": "VariableCollectionId:03cd46f9d4d831b34a260ae595739fae16c20861/-1:-1",
         "targetVariableSetName": "Semantic / Size"
       },
@@ -43,7 +43,7 @@
       ],
       "com.figma.aliasData": {
         "targetVariableId": "VariableID:fcee33ada89e856b13cb2021b85c10c854cad2c7/-1:-1",
-        "targetVariableName": "Border/s",
+        "targetVariableName": "Border/width-s",
         "targetVariableSetId": "VariableCollectionId:03cd46f9d4d831b34a260ae595739fae16c20861/-1:-1",
         "targetVariableSetName": "Semantic / Size"
       },
@@ -67,7 +67,7 @@
       "com.figma.isOverride": true
     }
   },
-  "element-spacing": {
+  "gap": {
     "$type": "number",
     "$value": 8,
     "$extensions": {
@@ -84,7 +84,7 @@
       "com.figma.isOverride": true
     }
   },
-  "h-padding": {
+  "padding-x": {
     "$type": "number",
     "$value": 16,
     "$extensions": {
@@ -101,7 +101,7 @@
       "com.figma.isOverride": true
     }
   },
-  "v-padding": {
+  "padding-y": {
     "$type": "number",
     "$value": 12,
     "$extensions": {

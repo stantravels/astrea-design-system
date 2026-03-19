@@ -1,5 +1,5 @@
 {
-  "astrea-focus-border-color": {
+  "border-color": {
     "$type": "color",
     "$value": {
       "colorSpace": "srgb",
@@ -25,7 +25,7 @@
       "com.figma.isOverride": true
     }
   },
-  "astrea-focus-border-width": {
+  "border-width": {
     "$type": "number",
     "$value": 2,
     "$extensions": {
@@ -35,14 +35,14 @@
       ],
       "com.figma.aliasData": {
         "targetVariableId": "VariableID:2d903526a1a3902d74f72df026fe7b2fda93e3e3/-1:-1",
-        "targetVariableName": "Border/m",
+        "targetVariableName": "Border/width-m",
         "targetVariableSetId": "VariableCollectionId:03cd46f9d4d831b34a260ae595739fae16c20861/-1:-1",
         "targetVariableSetName": "Semantic / Size"
       },
       "com.figma.isOverride": true
     }
   },
-  "astrea-focus-corner-radius": {
+  "corner-radius": {
     "$type": "number",
     "$value": 0,
     "$extensions": {
@@ -59,7 +59,7 @@
       "com.figma.isOverride": true
     }
   },
-  "astrea-focus-h-padding": {
+  "padding-x": {
     "$type": "number",
     "$value": 0,
     "$extensions": {
@@ -76,7 +76,7 @@
       "com.figma.isOverride": true
     }
   },
-  "astrea-focus-v-padding": {
+  "padding-y": {
     "$type": "number",
     "$value": 0,
     "$extensions": {
