@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { componentTokens, primitiveTokens, semanticTokens } from '../tokens';
-import type { TokenReference } from '../tokens/helpers';
+import { collectTokenReferences, isTokenReference, type TokenCollection, type TokenReference } from '../tokens/helpers';
 import { breakpoints, grid, typography } from './index';
 
 type ColorTokenReference = TokenReference & { value: string };
@@ -115,40 +115,25 @@ function ColorTable({
   );
 }
 
+function getCollectionTokens(collection: TokenCollection) {
+  return collectTokenReferences(collection);
+}
+
+function getCollectionChildren(collection: TokenCollection) {
+  return Object.entries(collection).filter(([, value]) => !isTokenReference(value)) as Array<
+    [string, TokenCollection]
+  >;
+}
+
 const meta = {
   title: 'Foundations/Overview',
   tags: ['autodocs'],
   render: () => {
-    const primitiveColorTokens = Object.values(primitiveTokens.colors).map((token) => ({
-      ...token,
-      value: String(token.value),
-    }));
-
-    const semanticColorTokens = [
-      semanticTokens.colors.textPrimary,
-      semanticTokens.colors.textSecondary,
-      semanticTokens.colors.textBrand,
-      semanticTokens.colors.surfaceBase,
-      semanticTokens.colors.surfaceGrey,
-      semanticTokens.colors.surfaceGreyXWeak,
-      semanticTokens.colors.surfaceBrandXXWeak,
-      semanticTokens.colors.borderGreyWeak,
-      semanticTokens.colors.borderGrey,
-      semanticTokens.colors.borderGreyStrong,
-      semanticTokens.colors.borderBrand,
-    ].map((token) => ({
-      ...token,
-      value: String(token.value),
-    }));
-
-    const typographyTokens = [
-      primitiveTokens.typography.fontFamilyBody,
-      primitiveTokens.typography.fontWeightRegular,
-      primitiveTokens.typography.fontWeightSemibold,
-      primitiveTokens.typography.fontSize2xs,
-      primitiveTokens.typography.fontSizeM,
-      primitiveTokens.typography.lineHeightBody,
-    ];
+    const primitiveColorGroups = getCollectionChildren(primitiveTokens.colors);
+    const semanticColorGroups = getCollectionChildren(semanticTokens.colors);
+    const primitiveSizingTokens = getCollectionTokens(primitiveTokens.sizing);
+    const semanticSizingTokens = getCollectionTokens(semanticTokens.sizing);
+    const typographyGroups = getCollectionChildren(primitiveTokens.typography);
 
     return (
       <div style={{ display: 'grid', gap: '32px', width: 'min(1120px, 100%)' }}>
@@ -180,20 +165,59 @@ const meta = {
           />
         </Section>
 
-        <Section title="Primitive colors" description="Direct values exported from the Figma primitive color collection.">
-          <ColorTable tokens={primitiveColorTokens} />
+        <Section title="Primitive colors" description="All primitive color tokens exported from Figma.">
+          <div style={{ display: 'grid', gap: '24px' }}>
+            {primitiveColorGroups.map(([groupName, groupTokens]) => (
+              <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
+                <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
+                <ColorTable
+                  tokens={getCollectionTokens(groupTokens).map((token) => ({
+                    ...token,
+                    value: String(token.value),
+                  }))}
+                />
+              </div>
+            ))}
+          </div>
         </Section>
 
-        <Section title="Semantic colors" description="Semantic aliases currently used by the active Tab and docs surfaces.">
-          <ColorTable tokens={semanticColorTokens} />
+        <Section title="Semantic colors" description="All semantic color aliases exported from Figma, including links back to primitive sources.">
+          <div style={{ display: 'grid', gap: '24px' }}>
+            {semanticColorGroups.map(([groupName, groupTokens]) => (
+              <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
+                <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
+                <ColorTable
+                  tokens={getCollectionTokens(groupTokens).map((token) => ({
+                    ...token,
+                    value: String(token.value),
+                  }))}
+                />
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Primitive sizing" description="All primitive spacing, radius, border, and scale values exported from Figma.">
+          <TokenTable tokens={primitiveSizingTokens} />
+        </Section>
+
+        <Section title="Semantic sizing" description="All semantic sizing aliases exported from Figma.">
+          <TokenTable tokens={semanticSizingTokens} />
         </Section>
 
         <Section title="Tab component tokens" description="Component-level token mapping currently implemented in code.">
           <TokenTable tokens={Object.values(componentTokens.tab)} />
         </Section>
 
-        <Section title="Typography" description="Foundational typography values exported from the Figma desktop collection.">
-          <TokenTable tokens={typographyTokens} />
+        <Section title="Typography" description="All typography tokens from the Figma desktop collection.">
+          <div style={{ display: 'grid', gap: '24px' }}>
+            {typographyGroups.map(([groupName, groupTokens]) => (
+              <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
+                <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
+                <TokenTable tokens={getCollectionTokens(groupTokens)} />
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section title="Layout" description="Project breakpoints, grid settings, and named typography aliases exposed for implementation.">
