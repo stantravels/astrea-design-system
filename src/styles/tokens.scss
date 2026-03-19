@@ -1,11 +1,11 @@
 @use './tokens/aliases';
 @use './tokens/primitive.generated' as primitive;
 @use './tokens/semantic.generated' as semantic;
-@use './tokens/tab.generated' as tab;
+@use './tokens/component.generated' as component;
 
 :root {
   @include primitive.astrea-primitive-tokens;
   @include semantic.astrea-semantic-tokens;
-  @include tab.astrea-tab-component-tokens;
+  @include component.astrea-component-tokens;
   @include aliases.astrea-runtime-aliases;
 }

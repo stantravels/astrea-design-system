@@ -1,5 +1,5 @@
-import semanticColors from './figma/semantic-colors.json';
-import semanticSizing from './figma/semantic-sizing.json';
+import semanticColors from './figma/semantic_color.json';
+import semanticSizing from './figma/semantic_size.json';
 import { collectTokenReferences, createTokenCollection } from './helpers';
 
 export const semanticTokens = {

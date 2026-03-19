@@ -234,7 +234,7 @@ const meta = {
           </div>
         </Section>
 
-        <Section title="Primitive sizing" description="All primitive spacing, radius, border, and scale values exported from Figma.">
+        <Section title="Primitive sizing" description="All primitive spacing, radius, border, and size values exported from Figma.">
           <TokenTable tokens={primitiveSizingTokens} showAlias={false} />
         </Section>
 

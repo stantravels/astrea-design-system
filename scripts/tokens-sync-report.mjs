@@ -22,6 +22,14 @@ function toKebab(value) {
     .toLowerCase();
 }
 
+function normalizePart(value) {
+  const trimmed = value.trim();
+  if (/^-\d+$/.test(trimmed)) {
+    return `neg-${trimmed.slice(1)}`;
+  }
+  return toKebab(trimmed);
+}
+
 function flattenTokens(tree, pathParts = []) {
   const out = [];
   for (const [key, value] of Object.entries(tree)) {
@@ -43,17 +51,23 @@ function flattenTokens(tree, pathParts = []) {
   return out;
 }
 
-function toPrimitiveVarName(pathParts) {
-  return `--astrea-primitive-${pathParts.map(toKebab).join('-')}`;
+function toPrimitiveVarName(pathParts, kind) {
+  const parts = pathParts.map(normalizePart);
+  if (kind === 'color') {
+    return `--pri-color-${parts.join('-')}`;
+  }
+  if (kind === 'size') {
+    return `--pri-size-${parts.slice(1).join('-')}`;
+  }
+  return `--pri-${parts.join('-')}`;
 }
 
 function toSemanticVarName(pathParts) {
-  return `--astrea-semantic-${pathParts.map(toKebab).join('-')}`;
+  return `--sem-${pathParts.map(normalizePart).join('-')}`;
 }
 
-function toTabVarName(pathParts) {
-  const normalized = pathParts.length > 1 ? pathParts.slice(1) : pathParts;
-  return `--${normalized.map(toKebab).join('-')}`;
+function toComponentVarName(pathParts) {
+  return `--com-${pathParts.map(normalizePart).join('-')}`;
 }
 
 function parseDeclaredVars(filePath) {
@@ -94,34 +108,34 @@ function reportSection(title, expected, declared) {
 function main() {
   const primitiveExpected = new Set(
     [
-      flattenTokens(readJson('primitives-colors.json')),
-      flattenTokens(readJson('primitives-sizing.json')),
-      flattenTokens(readJson('typography-desktop.json')),
+      ...flattenTokens(readJson('primitive_color.json')).map((token) => toPrimitiveVarName(token.path, 'color')),
+      ...flattenTokens(readJson('primitive_size.json')).map((token) => toPrimitiveVarName(token.path, 'size')),
+      ...flattenTokens(readJson('primitive_typography.json')).map((token) => toPrimitiveVarName(token.path, 'typography')),
     ]
-      .flat()
-      .map((token) => toPrimitiveVarName(token.path)),
   );
 
   const semanticExpected = new Set(
-    [flattenTokens(readJson('semantic-colors.json')), flattenTokens(readJson('semantic-sizing.json'))]
+    [flattenTokens(readJson('semantic_color.json')), flattenTokens(readJson('semantic_size.json'))]
       .flat()
       .map((token) => toSemanticVarName(token.path)),
   );
-  const tabExpected = new Set(
-    [flattenTokens(readJson('tab-component-colors.json')), flattenTokens(readJson('tab-component-sizing.json'))]
-      .flat()
-      .map((token) => toTabVarName(token.path)),
+  const componentExpected = new Set(
+    [
+      ...flattenTokens(readJson('component_tab_color.json')).map((token) => toComponentVarName(['tab', ...token.path])),
+      ...flattenTokens(readJson('component_tab_size.json')).map((token) => toComponentVarName(['tab', ...token.path])),
+      ...flattenTokens(readJson('component_focus.json')).map((token) => toComponentVarName(['focus', ...token.path])),
+    ],
   );
 
   const primitiveDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_primitive.generated.scss'));
   const semanticDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_semantic.generated.scss'));
-  const tabDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_tab.generated.scss'));
+  const componentDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_component.generated.scss'));
 
   const primitiveOk = reportSection('Primitive tokens', primitiveExpected, primitiveDeclared);
   const semanticOk = reportSection('Semantic tokens', semanticExpected, semanticDeclared);
-  const tabOk = reportSection('Tab component tokens', tabExpected, tabDeclared);
+  const componentOk = reportSection('Component tokens', componentExpected, componentDeclared);
 
-  if (!primitiveOk || !semanticOk || !tabOk) {
+  if (!primitiveOk || !semanticOk || !componentOk) {
     process.exitCode = 1;
     process.stdout.write('\nToken sync report: FAILED\n');
     return;

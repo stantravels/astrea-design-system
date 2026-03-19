@@ -1,47 +1,47 @@
 @mixin astrea-runtime-aliases {
-  --astrea-font-family-title: var(--astrea-primitive-family-font-family-title), 'Segoe UI', sans-serif;
-  --astrea-font-family-body: var(--astrea-primitive-family-font-family-body), 'Segoe UI', sans-serif;
-  --astrea-font-family-mono: var(--astrea-primitive-family-font-family-mono), monospace;
+  --astrea-font-family-title: var(--pri-font-family-title), 'Segoe UI', sans-serif;
+  --astrea-font-family-body: var(--pri-font-family-body), 'Segoe UI', sans-serif;
+  --astrea-font-family-mono: var(--pri-font-family-monospace), monospace;
 
-  --astrea-font-size-2xs: calc(var(--astrea-primitive-size-font-size-2xs) * 1px);
-  --astrea-font-size-xs: calc(var(--astrea-primitive-size-font-size-xs) * 1px);
-  --astrea-font-size-s: calc(var(--astrea-primitive-size-font-size-s) * 1px);
-  --astrea-font-size-m: calc(var(--astrea-primitive-size-font-size-m) * 1px);
-  --astrea-font-size-l: calc(var(--astrea-primitive-size-font-size-l) * 1px);
-  --astrea-font-size-xl: calc(var(--astrea-primitive-size-font-size-xl) * 1px);
-  --astrea-font-size-3xl: calc(var(--astrea-primitive-size-font-size-3xl) * 1px);
-  --astrea-font-size-4xl: calc(var(--astrea-primitive-size-font-size-4xl) * 1px);
+  --astrea-font-size-2xs: calc(var(--pri-font-size-2xs) * 1px);
+  --astrea-font-size-xs: calc(var(--pri-font-size-xs) * 1px);
+  --astrea-font-size-s: calc(var(--pri-font-size-s) * 1px);
+  --astrea-font-size-m: calc(var(--pri-font-size-m) * 1px);
+  --astrea-font-size-l: calc(var(--pri-font-size-l) * 1px);
+  --astrea-font-size-xl: calc(var(--pri-font-size-xl) * 1px);
+  --astrea-font-size-3xl: calc(var(--pri-font-size-3xl) * 1px);
+  --astrea-font-size-4xl: calc(var(--pri-font-size-4xl) * 1px);
 
-  --astrea-line-height-title: calc(var(--astrea-primitive-line-height-line-height-title) / 100);
-  --astrea-line-height-body: calc(var(--astrea-primitive-line-height-line-height-body) / 100);
-  --astrea-line-height-footnote: calc(var(--astrea-primitive-line-height-line-height-footnote) / 100);
+  --astrea-line-height-title: calc(var(--pri-line-height-title) / 100);
+  --astrea-line-height-body: calc(var(--pri-line-height-body) / 100);
+  --astrea-line-height-footnote: calc(var(--pri-line-height-footnote) / 100);
 
   --astrea-font-weight-light: 300;
   --astrea-font-weight-regular: 400;
   --astrea-font-weight-semibold: 600;
   --astrea-font-weight-bold: 700;
 
-  --astrea-space-8: calc(var(--astrea-primitive-scale-8) * 1px);
-  --astrea-space-12: calc(var(--astrea-primitive-scale-12) * 1px);
-  --astrea-space-16: calc(var(--astrea-primitive-scale-16) * 1px);
-  --astrea-space-24: calc(var(--astrea-primitive-scale-24) * 1px);
-  --astrea-space-32: calc(var(--astrea-primitive-scale-32) * 1px);
-  --astrea-space-40: calc(var(--astrea-primitive-scale-40) * 1px);
+  --astrea-space-8: calc(var(--pri-size-8) * 1px);
+  --astrea-space-12: calc(var(--pri-size-12) * 1px);
+  --astrea-space-16: calc(var(--pri-size-16) * 1px);
+  --astrea-space-24: calc(var(--pri-size-24) * 1px);
+  --astrea-space-32: calc(var(--pri-size-32) * 1px);
+  --astrea-space-40: calc(var(--pri-size-40) * 1px);
 
-  --astrea-surface-base: var(--astrea-semantic-surface-astrea-surface-base);
-  --astrea-surface-grey: var(--astrea-semantic-surface-astrea-surface-grey);
-  --astrea-surface-grey-xweak: var(--astrea-semantic-surface-astrea-surface-grey-xweak);
-  --astrea-surface-brand-xxweak: var(--astrea-semantic-surface-astrea-surface-brand-xxweak);
+  --astrea-surface-base: var(--sem-surface-base);
+  --astrea-surface-grey: var(--sem-surface-grey);
+  --astrea-surface-grey-xweak: var(--sem-surface-grey-xweak);
+  --astrea-surface-brand-xxweak: var(--sem-surface-brand-xxweak);
 
-  --astrea-border-grey-weak: var(--astrea-semantic-border-astrea-border-grey-weak);
-  --astrea-border-grey: var(--astrea-semantic-border-astrea-border-grey);
-  --astrea-border-grey-strong: var(--astrea-semantic-border-astrea-border-grey-strong);
-  --astrea-border-brand: var(--astrea-semantic-border-astrea-border-brand);
-  --astrea-border-focus: var(--astrea-semantic-border-astrea-border-focus);
+  --astrea-border-grey-weak: var(--sem-border-grey-weak);
+  --astrea-border-grey: var(--sem-border-grey);
+  --astrea-border-grey-strong: var(--sem-border-grey-strong);
+  --astrea-border-brand: var(--sem-border-brand);
+  --astrea-border-focus: var(--sem-border-focus);
 
-  --astrea-text-primary: var(--astrea-semantic-text-astrea-text-primary);
-  --astrea-text-secondary: var(--astrea-semantic-text-astrea-text-secondary);
-  --astrea-text-brand: var(--astrea-semantic-text-astrea-text-brand);
+  --astrea-text-primary: var(--sem-text-primary);
+  --astrea-text-secondary: var(--sem-text-secondary);
+  --astrea-text-brand: var(--sem-text-brand);
 
   --astrea-type-heading-display:
     var(--astrea-font-weight-semibold)
@@ -72,19 +72,47 @@
     var(--astrea-font-size-2xs) / var(--astrea-line-height-footnote)
     var(--astrea-font-family-body);
 
-  --astrea-tab-height: calc(var(--astrea-primitive-scale-48) * 1px);
-  --astrea-tab-focus-ring-width: calc(var(--astrea-semantic-border-border-2) * 1px);
-  --astrea-tab-focus-ring-color: var(--astrea-semantic-border-astrea-border-focus);
+  --astrea-tab-height: calc(var(--pri-size-48) * 1px);
+  --astrea-tab-h-padding: var(--com-tab-padding-x);
+  --astrea-tab-v-padding: var(--com-tab-padding-y);
+  --astrea-tab-element-spacing: var(--com-tab-gap);
+  --astrea-tab-corner-radius: var(--com-tab-corner-radius);
+  --astrea-tab-border-width-base: var(--com-tab-border-width-base);
+  --astrea-tab-border-width-inactive: var(--com-tab-border-width-inactive);
+  --astrea-tab-border-width-active: var(--com-tab-border-width-active);
+  --astrea-tab-border-color: var(--com-tab-border-color);
+  --astrea-tab-border-color-hover: var(--com-tab-border-color-hover);
+  --astrea-tab-border-color-pressed: var(--com-tab-border-color-pressed);
+  --astrea-tab-border-color-active: var(--com-tab-border-color-active);
+  --astrea-tab-border-color-disabled: var(--com-tab-border-color-disabled);
+  --astrea-tab-fill-color: var(--com-tab-fill-color);
+  --astrea-tab-fill-color-hover: var(--com-tab-fill-color-hover);
+  --astrea-tab-fill-color-pressed: var(--com-tab-fill-color-pressed);
+  --astrea-tab-fill-color-active: var(--com-tab-fill-color-active);
+  --astrea-tab-fill-color-disabled: var(--com-tab-fill-color-disabled);
+  --astrea-tab-text-color: var(--com-tab-text-color);
+  --astrea-tab-text-color-hover: var(--com-tab-text-color-hover);
+  --astrea-tab-text-color-pressed: var(--com-tab-text-color-pressed);
+  --astrea-tab-text-color-active: var(--com-tab-text-color-active);
+  --astrea-tab-text-color-disabled: var(--com-tab-text-color-disabled);
+  --astrea-tab-icon-color: var(--com-tab-icon-color);
+  --astrea-tab-icon-color-hover: var(--com-tab-icon-color-hover);
+  --astrea-tab-icon-color-pressed: var(--com-tab-icon-color-pressed);
+  --astrea-tab-icon-color-active: var(--com-tab-icon-color-active);
+  --astrea-tab-icon-color-disabled: var(--com-tab-icon-color-disabled);
 
-  --astrea-counter-height: calc(var(--astrea-primitive-scale-16) * 1px);
-  --astrea-counter-min-width: calc(var(--astrea-primitive-scale-16) * 1px);
-  --astrea-counter-max-width: calc(var(--astrea-primitive-scale-24) * 1px);
-  --astrea-counter-padding-x: calc(var(--astrea-primitive-scale-4) * 1px);
-  --astrea-counter-corner-radius: calc(var(--astrea-semantic-radius-radius-full) * 1px);
-  --astrea-counter-background-default: var(--astrea-semantic-surface-astrea-surface-grey-weak);
-  --astrea-counter-border-default: var(--astrea-semantic-border-astrea-border-grey-weak);
-  --astrea-counter-text-default: var(--astrea-semantic-text-astrea-text-primary);
-  --astrea-counter-background-active: var(--astrea-semantic-surface-astrea-surface-danger);
-  --astrea-counter-border-active: var(--astrea-semantic-border-astrea-border-inverse);
-  --astrea-counter-text-active: var(--astrea-semantic-text-astrea-text-inverse);
+  --astrea-tab-focus-ring-width: calc(var(--com-focus-border-width) * 1px);
+  --astrea-tab-focus-ring-color: var(--com-focus-border-color);
+
+  --astrea-counter-height: calc(var(--pri-size-16) * 1px);
+  --astrea-counter-min-width: calc(var(--pri-size-16) * 1px);
+  --astrea-counter-max-width: calc(var(--pri-size-24) * 1px);
+  --astrea-counter-padding-x: calc(var(--pri-size-4) * 1px);
+  --astrea-counter-corner-radius: calc(var(--sem-radius-full) * 1px);
+  --astrea-counter-background-default: var(--sem-surface-grey-weak);
+  --astrea-counter-border-default: var(--sem-border-grey-weak);
+  --astrea-counter-text-default: var(--sem-text-primary);
+  --astrea-counter-background-active: var(--sem-surface-danger);
+  --astrea-counter-border-active: var(--sem-border-inverse);
+  --astrea-counter-text-active: var(--sem-text-inverse);
 }

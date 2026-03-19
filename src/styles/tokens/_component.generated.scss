@@ -1,0 +1,37 @@
+// Auto-generated from src/tokens/figma component exports.
+// Run: npm run tokens:generate
+
+@mixin astrea-component-tokens {
+  --com-focus-border-color: var(--sem-border-focus);
+  --com-focus-border-width: var(--sem-border-width-m);
+  --com-focus-corner-radius: var(--sem-radius-none);
+  --com-focus-padding-x: var(--sem-padding-none);
+  --com-focus-padding-y: var(--sem-padding-none);
+  --com-tab-border-color-active: var(--sem-border-brand);
+  --com-tab-border-color-disabled: var(--sem-border-grey-weak);
+  --com-tab-border-color-hover: var(--sem-border-grey-strong);
+  --com-tab-border-color-pressed: var(--sem-border-grey-strong);
+  --com-tab-border-color: var(--sem-border-grey);
+  --com-tab-border-width-active: var(--sem-border-width-l);
+  --com-tab-border-width-base: var(--sem-border-none);
+  --com-tab-border-width-inactive: var(--sem-border-width-s);
+  --com-tab-corner-radius: var(--sem-radius-none);
+  --com-tab-fill-color-active: var(--sem-surface-base);
+  --com-tab-fill-color-disabled: var(--sem-surface-grey-xweak);
+  --com-tab-fill-color-hover: var(--sem-surface-brand-xxweak);
+  --com-tab-fill-color-pressed: var(--sem-surface-brand-xweak);
+  --com-tab-fill-color: var(--sem-surface-base);
+  --com-tab-gap: var(--sem-padding-m);
+  --com-tab-icon-color-active: var(--sem-icon-brand-xstrong);
+  --com-tab-icon-color-disabled: var(--sem-icon-grey-strong);
+  --com-tab-icon-color-hover: var(--sem-icon-brand-strong);
+  --com-tab-icon-color-pressed: var(--sem-icon-brand-xstrong);
+  --com-tab-icon-color: var(--sem-icon-brand);
+  --com-tab-padding-x: var(--sem-padding-xl);
+  --com-tab-padding-y: var(--sem-padding-l);
+  --com-tab-text-color-active: var(--sem-text-primary);
+  --com-tab-text-color-disabled: var(--sem-text-secondary);
+  --com-tab-text-color-hover: var(--sem-text-brand-strong);
+  --com-tab-text-color-pressed: var(--sem-text-brand-xstrong);
+  --com-tab-text-color: var(--sem-text-brand);
+}

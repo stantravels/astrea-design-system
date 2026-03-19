@@ -1,6 +1,6 @@
-import primitiveColors from './figma/primitives-colors.json';
-import primitiveSizing from './figma/primitives-sizing.json';
-import typographyDesktop from './figma/typography-desktop.json';
+import primitiveColors from './figma/primitive_color.json';
+import primitiveSizing from './figma/primitive_size.json';
+import typographyDesktop from './figma/primitive_typography.json';
 import { collectTokenReferences, createTokenCollection } from './helpers';
 
 export const primitiveTokens = {

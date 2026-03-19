@@ -32,18 +32,19 @@ React + TypeScript + Vite + Storybook starter for the Astrea design system.
 The project uses a 3-level token hierarchy:
 - `primitive` -> base values
 - `semantic` -> aliases mapped to primitive tokens
-- `component` -> aliases mapped to semantic tokens, currently implemented for `Tab`
+- `component` -> aliases mapped to semantic tokens, currently implemented for `Tab` and `Focus`
 
 Recommended workflow after exporting updated JSON files from Figma:
 
 1. Update the JSON files in `src/tokens/figma`:
-   - `primitives-colors.json`
-   - `primitives-sizing.json`
-   - `typography-desktop.json`
-   - `semantic-colors.json`
-   - `semantic-sizing.json`
-   - `tab-component-colors.json`
-   - `tab-component-sizing.json`
+   - `primitive_color.json`
+   - `primitive_size.json`
+   - `primitive_typography.json`
+   - `semantic_color.json`
+   - `semantic_size.json`
+   - `component_tab_color.json`
+   - `component_tab_size.json`
+   - `component_focus.json`
 2. Generate SCSS token files:
    - `npm run tokens:generate`
 3. Verify token sync:
@@ -54,9 +55,10 @@ Recommended workflow after exporting updated JSON files from Figma:
 Auto-generated files:
 - `src/styles/tokens/_primitive.generated.scss`
 - `src/styles/tokens/_semantic.generated.scss`
-- `src/styles/tokens/_tab.generated.scss`
+- `src/styles/tokens/_component.generated.scss`
 
 Important:
 - generated files should not be edited manually;
 - developer-friendly aliases and composed runtime variables live in `src/styles/tokens/_aliases.scss`;
-- the single entry point for token assembly is `src/styles/tokens.scss`.
+- the single entry point for token assembly is `src/styles/tokens.scss`;
+- generated variables use concise level prefixes: `--pri-*`, `--sem-*`, `--com-*`.

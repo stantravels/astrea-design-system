@@ -23,6 +23,14 @@ function toKebab(value) {
     .toLowerCase();
 }
 
+function normalizePart(value) {
+  const trimmed = value.trim();
+  if (/^-\d+$/.test(trimmed)) {
+    return `neg-${trimmed.slice(1)}`;
+  }
+  return toKebab(trimmed);
+}
+
 function toCssString(value) {
   if (typeof value === 'string') {
     return value.includes(' ') ? `'${value}'` : value;
@@ -65,24 +73,34 @@ function flattenTokens(tree, pathParts = []) {
   return out;
 }
 
-function toPrimitiveVarName(pathParts) {
-  return `--astrea-primitive-${pathParts.map(toKebab).join('-')}`;
+function primitiveVarName(pathParts, kind) {
+  const parts = pathParts.map(normalizePart);
+  if (kind === 'color') {
+    return `--pri-color-${parts.join('-')}`;
+  }
+
+  if (kind === 'size') {
+    return `--pri-size-${parts.slice(1).join('-')}`;
+  }
+
+  return `--pri-${parts.join('-')}`;
 }
 
 function toSemanticVarName(pathParts) {
-  return `--astrea-semantic-${pathParts.map(toKebab).join('-')}`;
+  return `--sem-${pathParts.map(normalizePart).join('-')}`;
 }
 
-function toTabVarName(pathParts) {
-  const normalized = pathParts.length > 1 ? pathParts.slice(1) : pathParts;
-  return `--${normalized.map(toKebab).join('-')}`;
+function toComponentVarName(pathParts) {
+  return `--com-${pathParts.map(normalizePart).join('-')}`;
 }
 
 function createPrimitiveScss(primitiveTrees) {
-  const allTokens = primitiveTrees.flatMap(({ tree }) => flattenTokens(tree));
+  const allTokens = primitiveTrees.flatMap(({ tree, kind }) =>
+    flattenTokens(tree).map((token) => ({ ...token, kind })),
+  );
   const lines = allTokens
     .map((token) => {
-      const name = toPrimitiveVarName(token.path);
+      const name = primitiveVarName(token.path, token.kind);
       const value = toCssString(token.value);
       return `  ${name}: ${value};`;
     })
@@ -101,7 +119,9 @@ function aliasToPrimitiveVar(aliasTargetName) {
     return null;
   }
 
-  return toPrimitiveVarName(pathParts);
+  const group = normalizePart(pathParts[0] ?? '');
+  const kind = group === 'size' ? 'size' : group.startsWith('font-') || group === 'line-height' ? 'typography' : 'color';
+  return primitiveVarName(pathParts, kind);
 }
 
 function aliasToSemanticVar(aliasTargetName) {
@@ -132,51 +152,55 @@ function createSemanticScss(semanticTrees) {
 }
 
 function createTabComponentScss(tabTrees) {
-  const allTokens = tabTrees.flatMap(({ tree }) => flattenTokens(tree));
+  const allTokens = tabTrees.flatMap(({ tree, namespace }) =>
+    flattenTokens(tree).map((token) => ({ ...token, namespace })),
+  );
   const lines = allTokens
     .map((token) => {
-      const name = toTabVarName(token.path);
+      const name = toComponentVarName([token.namespace, ...token.path]);
       const aliasVar = aliasToSemanticVar(token.aliasData?.targetVariableName);
       const value = aliasVar ? `var(${aliasVar})` : toCssString(token.value);
       return `  ${name}: ${value};`;
     })
     .sort();
 
-  return `// Auto-generated from src/tokens/figma tab component exports.\n// Run: npm run tokens:generate\n\n@mixin astrea-tab-component-tokens {\n${lines.join('\n')}\n}\n`;
+  return `// Auto-generated from src/tokens/figma component exports.\n// Run: npm run tokens:generate\n\n@mixin astrea-component-tokens {\n${lines.join('\n')}\n}\n`;
 }
 
 function main() {
-  const primitivesColors = readJson('primitives-colors.json');
-  const primitivesSizing = readJson('primitives-sizing.json');
-  const primitivesTypography = readJson('typography-desktop.json');
+  const primitivesColors = readJson('primitive_color.json');
+  const primitivesSizing = readJson('primitive_size.json');
+  const primitivesTypography = readJson('primitive_typography.json');
 
-  const semanticColors = readJson('semantic-colors.json');
-  const semanticSizing = readJson('semantic-sizing.json');
-  const tabComponentColors = readJson('tab-component-colors.json');
-  const tabComponentSizing = readJson('tab-component-sizing.json');
+  const semanticColors = readJson('semantic_color.json');
+  const semanticSizing = readJson('semantic_size.json');
+  const componentTabColors = readJson('component_tab_color.json');
+  const componentTabSizing = readJson('component_tab_size.json');
+  const componentFocus = readJson('component_focus.json');
 
   const primitiveScss = createPrimitiveScss([
-    { tree: primitivesColors },
-    { tree: primitivesSizing },
-    { tree: primitivesTypography },
+    { tree: primitivesColors, kind: 'color' },
+    { tree: primitivesSizing, kind: 'size' },
+    { tree: primitivesTypography, kind: 'typography' },
   ]);
   const semanticScss = createSemanticScss([
     { tree: semanticColors },
     { tree: semanticSizing },
   ]);
-  const tabScss = createTabComponentScss([
-    { tree: tabComponentColors },
-    { tree: tabComponentSizing },
+  const componentScss = createTabComponentScss([
+    { tree: componentTabColors, namespace: 'tab' },
+    { tree: componentTabSizing, namespace: 'tab' },
+    { tree: componentFocus, namespace: 'focus' },
   ]);
 
   fs.writeFileSync(path.join(stylesTokensDir, '_primitive.generated.scss'), primitiveScss);
   fs.writeFileSync(path.join(stylesTokensDir, '_semantic.generated.scss'), semanticScss);
-  fs.writeFileSync(path.join(stylesTokensDir, '_tab.generated.scss'), tabScss);
+  fs.writeFileSync(path.join(stylesTokensDir, '_component.generated.scss'), componentScss);
 
   process.stdout.write('Generated SCSS token files:\n');
   process.stdout.write('- src/styles/tokens/_primitive.generated.scss\n');
   process.stdout.write('- src/styles/tokens/_semantic.generated.scss\n');
-  process.stdout.write('- src/styles/tokens/_tab.generated.scss\n');
+  process.stdout.write('- src/styles/tokens/_component.generated.scss\n');
 }
 
 main();
