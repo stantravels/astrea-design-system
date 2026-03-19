@@ -31,7 +31,7 @@ export function Tab({
 }: TabProps) {
   return (
     <div
-      className={styles.root}
+      className={`${styles.root}${state === 'Focused' ? ' astrea-focus-ring' : ''}`}
       data-layout={layout}
       data-selected={selected}
       data-state={state}

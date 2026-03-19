@@ -44,6 +44,19 @@ svg {
   min-height: 100vh;
 }
 
+.astrea-focus-ring {
+  position: relative;
+}
+
+.astrea-focus-ring::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--astrea-focus-padding-y) * -1px) calc(var(--astrea-focus-padding-x) * -1px);
+  border: calc(var(--astrea-focus-border-width) * 1px) solid var(--astrea-focus-border-color);
+  border-radius: calc(var(--astrea-focus-corner-radius) * 1px);
+  pointer-events: none;
+}
+
 .playground-shell {
   width: min(960px, calc(100% - 48px));
   margin: 0 auto;

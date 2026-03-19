@@ -101,8 +101,14 @@
   --astrea-tab-icon-color-active: var(--com-tab-icon-color-active);
   --astrea-tab-icon-color-disabled: var(--com-tab-icon-color-disabled);
 
-  --astrea-tab-focus-ring-width: calc(var(--com-focus-border-width) * 1px);
-  --astrea-tab-focus-ring-color: var(--com-focus-border-color);
+  --astrea-focus-border-color: var(--com-focus-border-color);
+  --astrea-focus-border-width: var(--com-focus-border-width);
+  --astrea-focus-corner-radius: var(--com-focus-corner-radius);
+  --astrea-focus-padding-x: var(--com-focus-padding-x);
+  --astrea-focus-padding-y: var(--com-focus-padding-y);
+
+  --astrea-tab-focus-ring-width: calc(var(--astrea-focus-border-width) * 1px);
+  --astrea-tab-focus-ring-color: var(--astrea-focus-border-color);
 
   --astrea-counter-height: calc(var(--pri-size-16) * 1px);
   --astrea-counter-min-width: calc(var(--pri-size-16) * 1px);

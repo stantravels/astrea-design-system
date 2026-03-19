@@ -90,14 +90,6 @@
   border-left-width: calc(var(--astrea-tab-border-width-active) * 1px);
 }
 
-.root[data-state='Focused']::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: var(--astrea-tab-focus-ring-width) solid var(--astrea-tab-focus-ring-color);
-  pointer-events: none;
-}
-
 .text {
   color: var(--astrea-tab-text-color);
   font-family: var(--astrea-font-family-body);
