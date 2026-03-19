@@ -1,8 +1,8 @@
 export const typography = {
-  display: 'var(--ast-type-heading-display)',
-  heading: 'var(--ast-type-heading-lg)',
-  body: 'var(--ast-type-body-md)',
-  bodySm: 'var(--ast-type-body-sm)',
-  label: 'var(--ast-type-label-md)',
-  labelSm: 'var(--ast-type-label-sm)',
+  display: 'var(--astrea-type-heading-display)',
+  heading: 'var(--astrea-type-heading-lg)',
+  body: 'var(--astrea-type-body-md)',
+  bodySm: 'var(--astrea-type-body-sm)',
+  label: 'var(--astrea-type-label-md)',
+  labelSm: 'var(--astrea-type-label-sm)',
 } as const;

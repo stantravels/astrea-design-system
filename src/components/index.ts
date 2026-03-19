@@ -1,9 +1,5 @@
-export { Button } from './Button/Button';
-export type { ButtonProps } from './Button/Button';
 export { Icon } from './Icon/Icon';
 export type { IconName, IconProps } from './Icon/Icon';
-export { Input } from './Input/Input';
-export type { InputProps } from './Input/Input';
 export { Tab } from './Tab/Tab';
 export type { TabLayout, TabProps, TabState } from './Tab/Tab';
 export { HorizontalTabNavigation, VerticalTabNavigation } from './Tabs/Tabs';

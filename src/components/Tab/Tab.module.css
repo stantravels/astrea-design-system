@@ -100,7 +100,7 @@
 
 .text {
   color: var(--astrea-tab-text-color);
-  font-family: var(--ast-font-family-brand);
+  font-family: var(--astrea-font-family-body);
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -149,13 +149,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--ast-counter-min-width);
-  max-width: var(--ast-counter-max-width);
-  height: var(--ast-counter-height);
-  padding: 0 var(--ast-counter-padding-x);
-  border: 1px solid var(--ast-counter-border-default);
-  border-radius: var(--ast-counter-corner-radius);
-  background: var(--ast-counter-background-default);
-  color: var(--ast-counter-text-default);
-  font: var(--ast-type-counter-label);
+  min-width: var(--astrea-counter-min-width);
+  max-width: var(--astrea-counter-max-width);
+  height: var(--astrea-counter-height);
+  padding: 0 var(--astrea-counter-padding-x);
+  border: 1px solid var(--astrea-counter-border-default);
+  border-radius: var(--astrea-counter-corner-radius);
+  background: var(--astrea-counter-background-default);
+  color: var(--astrea-counter-text-default);
+  font: var(--astrea-type-counter-label);
 }

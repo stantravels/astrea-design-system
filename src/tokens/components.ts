@@ -1,20 +1,8 @@
 import tabComponentColors from './figma/tab-component-colors.json';
 import tabComponentSizing from './figma/tab-component-sizing.json';
-import { getTokenReference, tokenCssVar } from './helpers';
+import { getTokenReference } from './helpers';
 
 export const componentTokens = {
-  button: {
-    primaryBackground: tokenCssVar('ast-button-primary-background'),
-    primaryBackgroundHover: tokenCssVar('ast-button-primary-background-hover'),
-    secondaryBackground: tokenCssVar('ast-button-secondary-background'),
-    secondaryBorder: tokenCssVar('ast-button-secondary-border'),
-  },
-  input: {
-    background: tokenCssVar('ast-input-background'),
-    border: tokenCssVar('ast-input-border'),
-    focusBorder: tokenCssVar('ast-input-border-focus'),
-    dangerBorder: tokenCssVar('ast-input-border-danger'),
-  },
   tab: {
     borderColor: getTokenReference(tabComponentColors, ['Border', 'astrea-tab-border-color']),
     borderColorHover: getTokenReference(tabComponentColors, ['Border', 'astrea-tab-border-color-hover']),
