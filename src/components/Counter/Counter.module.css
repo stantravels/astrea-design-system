@@ -1,0 +1,31 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: calc(var(--com-counter-size) * 1px);
+  max-width: calc(var(--com-counter-max-width) * 1px);
+  height: calc(var(--com-counter-size) * 1px);
+  padding: 0 calc(var(--com-counter-padding-x) * 1px);
+  border: calc(var(--com-counter-border-width) * 1px) solid var(--com-counter-border-color);
+  border-radius: calc(var(--com-counter-corner-radius) * 1px);
+  background: var(--com-counter-fill-color);
+  color: var(--com-counter-text-color);
+  font:
+    400
+    calc(var(--pri-font-size-2xs) * 1px) / calc(var(--pri-line-height-footnote) / 100)
+    var(--pri-font-family-body), 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+}
+
+.root[data-active='true'] {
+  border-color: var(--com-counter-border-color-active);
+  background: var(--com-counter-fill-color-active);
+  color: var(--com-counter-text-color-active);
+}
+
+.root[data-indicator='true'] {
+  width: calc(var(--com-counter-size) * 1px);
+  min-width: calc(var(--com-counter-size) * 1px);
+  max-width: calc(var(--com-counter-size) * 1px);
+  padding: 0;
+}

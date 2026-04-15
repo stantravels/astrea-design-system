@@ -8,22 +8,25 @@
 }
 
 html {
-  font-family: var(--astrea-font-family-body);
-  background: var(--astrea-surface-grey-xweak);
-  color: var(--astrea-text-primary);
+  font-family: var(--pri-font-family-body), 'Segoe UI', sans-serif;
+  background: var(--sem-surface-grey-xweak);
+  color: var(--sem-text-primary);
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--astrea-surface-grey-xweak);
-  color: var(--astrea-text-primary);
+  background: var(--sem-surface-grey-xweak);
+  color: var(--sem-text-primary);
 }
 
 body,
 button,
 input {
-  font: var(--astrea-type-body-md);
+  font:
+    400
+    calc(var(--pri-font-size-m) * 1px) / calc(var(--pri-line-height-body) / 100)
+    var(--pri-font-family-body), 'Segoe UI', sans-serif;
 }
 
 button,
@@ -51,9 +54,9 @@ svg {
 .astrea-focus-ring::after {
   content: '';
   position: absolute;
-  inset: calc(var(--astrea-focus-padding-y) * -1px) calc(var(--astrea-focus-padding-x) * -1px);
-  border: calc(var(--astrea-focus-border-width) * 1px) solid var(--astrea-focus-border-color);
-  border-radius: calc(var(--astrea-focus-corner-radius) * 1px);
+  inset: calc(var(--com-focus-padding-y) * -1px) calc(var(--com-focus-padding-x) * -1px);
+  border: calc(var(--com-focus-border-width) * 1px) solid var(--com-focus-border-color);
+  border-radius: calc(var(--com-focus-corner-radius) * 1px);
   pointer-events: none;
 }
 
@@ -65,10 +68,10 @@ svg {
 
 .playground-hero {
   display: grid;
-  gap: var(--astrea-space-16);
-  padding: var(--astrea-space-32);
-  border: 1px solid var(--astrea-border-grey-weak);
-  background: var(--astrea-surface-base);
+  gap: calc(var(--pri-size-16) * 1px);
+  padding: calc(var(--pri-size-32) * 1px);
+  border: calc(var(--sem-border-width-s) * 1px) solid var(--sem-border-grey-weak);
+  background: var(--sem-surface-base);
 }
 
 .playground-eyebrow {
@@ -76,34 +79,33 @@ svg {
   width: fit-content;
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--astrea-surface-brand-xxweak);
-  color: var(--astrea-text-brand);
-  font: var(--astrea-type-label-md);
+  background: var(--sem-surface-brand-xxweak);
+  color: var(--sem-text-brand);
+  font:
+    600
+    calc(var(--pri-font-size-s) * 1px) / calc(var(--pri-line-height-footnote) / 100)
+    var(--pri-font-family-body), 'Segoe UI', sans-serif;
 }
 
 .playground-hero h1 {
   margin: 0;
-  color: var(--astrea-text-primary);
+  color: var(--sem-text-primary);
 }
 
 .playground-hero h1 {
-  font: var(--astrea-type-heading-display);
+  font:
+    600
+    calc(var(--pri-font-size-3xl) * 1px) / calc(var(--pri-line-height-title) / 100)
+    var(--pri-font-family-title), 'Segoe UI', sans-serif;
   max-width: 18ch;
 }
 
 .playground-hero p {
   margin: 0;
-  color: var(--astrea-text-secondary);
+  color: var(--sem-text-secondary);
 }
 
 @media (max-width: 960px) {
-  :root {
-    --astrea-type-heading-display:
-      var(--astrea-font-weight-semibold)
-      var(--astrea-font-size-xl) / var(--astrea-line-height-title)
-      var(--astrea-font-family-title);
-  }
-
   .playground-shell {
     width: min(100% - 24px, 960px);
     padding: 32px 0 48px;
@@ -114,6 +116,7 @@ svg {
   }
 
   .playground-hero h1 {
+    font-size: calc(var(--pri-font-size-xl) * 1px);
     max-width: 100%;
   }
 }

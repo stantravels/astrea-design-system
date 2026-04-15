@@ -10,6 +10,16 @@ type HierarchyRow = {
   description: string;
 };
 
+const surfaceBase = 'var(--sem-surface-base)';
+const borderWeak = 'calc(var(--sem-border-width-s) * 1px) solid var(--sem-border-grey-weak)';
+const textSecondary = 'var(--sem-text-secondary)';
+const headingLgFont =
+  "600 calc(var(--pri-font-size-xl) * 1px) / calc(var(--pri-line-height-title) / 100) var(--pri-font-family-title), 'Segoe UI', sans-serif";
+const bodySmFont =
+  "400 calc(var(--pri-font-size-s) * 1px) / calc(var(--pri-line-height-body) / 100) var(--pri-font-family-body), 'Segoe UI', sans-serif";
+const labelMdFont =
+  "600 calc(var(--pri-font-size-s) * 1px) / calc(var(--pri-line-height-footnote) / 100) var(--pri-font-family-body), 'Segoe UI', sans-serif";
+
 function Section({
   title,
   description,
@@ -22,9 +32,9 @@ function Section({
   return (
     <section style={{ display: 'grid', gap: '12px' }}>
       <div style={{ display: 'grid', gap: '4px' }}>
-        <h2 style={{ margin: 0, font: 'var(--astrea-type-heading-lg)' }}>{title}</h2>
+        <h2 style={{ margin: 0, font: headingLgFont }}>{title}</h2>
         {description ? (
-          <p style={{ margin: 0, color: 'var(--astrea-text-secondary)', font: 'var(--astrea-type-body-sm)' }}>
+          <p style={{ margin: 0, color: textSecondary, font: bodySmFont }}>
             {description}
           </p>
         ) : null}
@@ -50,11 +60,11 @@ function TokenTable({
   return (
     <div
       style={{
-        border: '1px solid var(--astrea-border-grey-weak)',
-        background: 'var(--astrea-surface-base)',
+        border: borderWeak,
+        background: surfaceBase,
       }}
     >
-      <table style={{ width: '100%', borderCollapse: 'collapse', font: 'var(--astrea-type-body-sm)' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', font: bodySmFont }}>
         <thead>
           <tr>
             <th style={{ padding: '12px', textAlign: 'left' }}>Token</th>
@@ -64,7 +74,7 @@ function TokenTable({
         </thead>
         <tbody>
           {tokens.map((token) => (
-            <tr key={token.name} style={{ borderTop: '1px solid var(--astrea-border-grey-weak)' }}>
+            <tr key={token.name} style={{ borderTop: borderWeak }}>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{token.name}</td>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{String(token.value)}</td>
               {showAlias ? <td style={{ padding: '12px', verticalAlign: 'top' }}>{formatAlias(token)}</td> : null}
@@ -80,11 +90,11 @@ function HierarchyTable({ rows }: { rows: Array<HierarchyRow> }) {
   return (
     <div
       style={{
-        border: '1px solid var(--astrea-border-grey-weak)',
-        background: 'var(--astrea-surface-base)',
+        border: borderWeak,
+        background: surfaceBase,
       }}
     >
-      <table style={{ width: '100%', borderCollapse: 'collapse', font: 'var(--astrea-type-body-sm)' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', font: bodySmFont }}>
         <thead>
           <tr>
             <th style={{ padding: '12px', textAlign: 'left' }}>Level</th>
@@ -93,7 +103,7 @@ function HierarchyTable({ rows }: { rows: Array<HierarchyRow> }) {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.level} style={{ borderTop: '1px solid var(--astrea-border-grey-weak)' }}>
+            <tr key={row.level} style={{ borderTop: borderWeak }}>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{row.level}</td>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>{row.description}</td>
             </tr>
@@ -118,11 +128,11 @@ function ColorTable({
   return (
     <div
       style={{
-        border: '1px solid var(--astrea-border-grey-weak)',
-        background: 'var(--astrea-surface-base)',
+        border: borderWeak,
+        background: surfaceBase,
       }}
     >
-      <table style={{ width: '100%', borderCollapse: 'collapse', font: 'var(--astrea-type-body-sm)' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', font: bodySmFont }}>
         <thead>
           <tr>
             <th style={{ padding: '12px', textAlign: 'left' }}>Preview</th>
@@ -133,13 +143,13 @@ function ColorTable({
         </thead>
         <tbody>
           {tokens.map((token) => (
-            <tr key={token.name} style={{ borderTop: '1px solid var(--astrea-border-grey-weak)' }}>
+            <tr key={token.name} style={{ borderTop: borderWeak }}>
               <td style={{ padding: '12px', verticalAlign: 'top' }}>
                 <div
                   style={{
                     width: '28px',
                     height: '28px',
-                    border: '1px solid var(--astrea-border-grey-weak)',
+                    border: borderWeak,
                     background: token.value,
                   }}
                 />
@@ -203,7 +213,7 @@ const meta = {
           <div style={{ display: 'grid', gap: '24px' }}>
             {primitiveColorGroups.map(([groupName, groupTokens]) => (
               <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
-                <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
+                <h3 style={{ margin: 0, font: labelMdFont }}>{groupName}</h3>
                 <ColorTable
                   tokens={getCollectionTokens(groupTokens).map((token) => ({
                     ...token,
@@ -220,7 +230,7 @@ const meta = {
           <div style={{ display: 'grid', gap: '24px' }}>
             {semanticColorGroups.map(([groupName, groupTokens]) => (
               <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
-                <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
+                <h3 style={{ margin: 0, font: labelMdFont }}>{groupName}</h3>
                 <ColorTable
                   tokens={getCollectionTokens(groupTokens).map((token) => ({
                     ...token,
@@ -250,7 +260,7 @@ const meta = {
           <div style={{ display: 'grid', gap: '24px' }}>
             {typographyGroups.map(([groupName, groupTokens]) => (
               <div key={groupName} style={{ display: 'grid', gap: '8px' }}>
-                <h3 style={{ margin: 0, font: 'var(--astrea-type-label-md)' }}>{groupName}</h3>
+                <h3 style={{ margin: 0, font: labelMdFont }}>{groupName}</h3>
                 <TokenTable tokens={getCollectionTokens(groupTokens)} showAlias={false} />
               </div>
             ))}

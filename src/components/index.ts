@@ -1,5 +1,9 @@
+export { Counter } from './Counter/Counter';
+export type { CounterProps } from './Counter/Counter';
 export { Icon } from './Icon/Icon';
 export type { IconName, IconProps } from './Icon/Icon';
+export { Link } from './Link/Link';
+export type { LinkProps, LinkState, LinkStyle, LinkType } from './Link/Link';
 export { Tab } from './Tab/Tab';
 export type { TabLayout, TabProps, TabState } from './Tab/Tab';
 export { HorizontalTabNavigation, VerticalTabNavigation } from './Tabs/Tabs';

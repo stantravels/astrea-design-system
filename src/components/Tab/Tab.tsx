@@ -1,3 +1,4 @@
+import { Counter } from '../Counter/Counter';
 import { Icon } from '../Icon/Icon';
 import styles from './Tab.module.css';
 
@@ -8,6 +9,7 @@ export interface TabProps {
   state?: TabState;
   layout?: TabLayout;
   selected?: boolean;
+  counterActive?: boolean;
   text?: string;
   showIconBefore?: boolean;
   iconBefore?: string;
@@ -21,13 +23,14 @@ export function Tab({
   state = 'Default',
   layout = 'Horizontal',
   selected = false,
+  counterActive,
   text = 'Tab name',
   showIconBefore = true,
-  iconBefore,
+  iconBefore = 'information',
   showIconAfter = true,
   iconAfter,
   showCounter = false,
-  counter,
+  counter = '2',
 }: TabProps) {
   return (
     <div
@@ -42,7 +45,7 @@ export function Tab({
         </span>
       ) : null}
       <span className={styles.text}>{text}</span>
-      {showCounter ? <span className={styles.counter}>{counter ?? '17'}</span> : null}
+      {showCounter ? <Counter active={counterActive ?? selected} value={counter} /> : null}
       {showIconAfter && iconAfter ? (
         <span className={styles.icon}>
           <Icon name={iconAfter} size={16} />

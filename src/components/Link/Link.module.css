@@ -1,0 +1,214 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--com-link-gap) * 1px);
+  padding: 0;
+  background: var(--com-link-regular-fill-color);
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.root[data-style='Inverse'] {
+  background: var(--com-link-inverse-fill-color);
+}
+
+.root[data-type='Menu link'] {
+  padding: calc(var(--com-link-padding-y) * 1px) calc(var(--com-link-padding-x) * 1px);
+  justify-content: center;
+}
+
+.root[data-type='Text link'],
+.root[data-type='Subtle link'] {
+  background: transparent;
+}
+
+.root[data-style='Regular'][data-state='Hover'] {
+  background: var(--com-link-regular-fill-color-hover);
+}
+
+.root[data-style='Inverse'][data-state='Hover'] {
+  background: var(--com-link-inverse-fill-color-hover);
+}
+
+.root[data-style='Regular'][data-state='Pressed'] {
+  background: var(--com-link-regular-fill-color-pressed);
+}
+
+.root[data-style='Inverse'][data-state='Pressed'] {
+  background: var(--com-link-inverse-fill-color-pressed);
+}
+
+.root[data-style='Regular'][data-state='Selected'] {
+  background: var(--com-link-regular-fill-color-selected);
+}
+
+.root[data-style='Inverse'][data-state='Selected'] {
+  background: var(--com-link-inverse-fill-color-selected);
+}
+
+.root[data-style='Regular'][data-state='Visited'] {
+  background: var(--com-link-regular-fill-color-visited);
+}
+
+.root[data-style='Inverse'][data-state='Visited'] {
+  background: var(--com-link-inverse-fill-color-visited);
+}
+
+.root[data-style='Regular'][data-state='Disabled'] {
+  background: var(--com-link-regular-fill-color-disabled);
+  pointer-events: none;
+}
+
+.root[data-style='Inverse'][data-state='Disabled'] {
+  background: var(--com-link-inverse-fill-color-disabled);
+  pointer-events: none;
+}
+
+.root[data-type='Text link'][data-state='Hover'],
+.root[data-type='Text link'][data-state='Pressed'],
+.root[data-type='Text link'][data-state='Selected'],
+.root[data-type='Text link'][data-state='Visited'],
+.root[data-type='Text link'][data-state='Disabled'],
+.root[data-type='Subtle link'][data-state='Hover'],
+.root[data-type='Subtle link'][data-state='Pressed'],
+.root[data-type='Subtle link'][data-state='Selected'],
+.root[data-type='Subtle link'][data-state='Visited'],
+.root[data-type='Subtle link'][data-state='Disabled'] {
+  background: transparent;
+}
+
+.leading,
+.trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--com-link-gap) * 1px);
+  min-width: 0;
+}
+
+.trailing {
+  justify-content: flex-end;
+}
+
+.text {
+  min-width: 0;
+  color: var(--com-link-regular-text-color);
+  font-family: var(--pri-font-family-body), 'Segoe UI', sans-serif;
+  font-size: calc(var(--pri-font-size-m) * 1px);
+  line-height: calc(var(--pri-line-height-body) / 100);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.root[data-style='Inverse'] .text {
+  color: var(--com-link-inverse-text-color);
+}
+
+.root[data-type='Subtle link'] .text {
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.root[data-type='Subtle link'][data-state='Hover'] .text,
+.root[data-type='Subtle link'][data-state='Pressed'] .text {
+  text-decoration: underline;
+}
+
+.root[data-type='Menu link'][data-state='Selected'] .text,
+.root[data-type='Menu link'][data-state='Disabled'] .text,
+.root[data-type='Text link'][data-state='Disabled'] .text,
+.root[data-type='Subtle link'][data-state='Disabled'] .text {
+  text-decoration: none;
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--com-link-regular-icon-color);
+  line-height: 0;
+}
+
+.root[data-style='Inverse'] .icon {
+  color: var(--com-link-inverse-icon-color);
+}
+
+.root[data-style='Regular'][data-state='Hover'] .text {
+  color: var(--com-link-regular-text-color-hover);
+}
+
+.root[data-style='Inverse'][data-state='Hover'] .text {
+  color: var(--com-link-inverse-text-color-hover);
+}
+
+.root[data-style='Regular'][data-state='Hover'] .icon {
+  color: var(--com-link-regular-icon-color-hover);
+}
+
+.root[data-style='Inverse'][data-state='Hover'] .icon {
+  color: var(--com-link-inverse-icon-color-hover);
+}
+
+.root[data-style='Regular'][data-state='Pressed'] .text {
+  color: var(--com-link-regular-text-color-pressed);
+}
+
+.root[data-style='Inverse'][data-state='Pressed'] .text {
+  color: var(--com-link-inverse-text-color-pressed);
+}
+
+.root[data-style='Regular'][data-state='Pressed'] .icon {
+  color: var(--com-link-regular-icon-color-pressed);
+}
+
+.root[data-style='Inverse'][data-state='Pressed'] .icon {
+  color: var(--com-link-inverse-icon-color-pressed);
+}
+
+.root[data-style='Regular'][data-state='Selected'] .text {
+  color: var(--com-link-regular-text-color-selected);
+}
+
+.root[data-style='Inverse'][data-state='Selected'] .text {
+  color: var(--com-link-inverse-text-color-selected);
+}
+
+.root[data-style='Regular'][data-state='Selected'] .icon {
+  color: var(--com-link-regular-icon-color-selected);
+}
+
+.root[data-style='Inverse'][data-state='Selected'] .icon {
+  color: var(--com-link-inverse-icon-color-selected);
+}
+
+.root[data-style='Regular'][data-state='Visited'] .text {
+  color: var(--com-link-regular-text-color-visited);
+}
+
+.root[data-style='Inverse'][data-state='Visited'] .text {
+  color: var(--com-link-inverse-text-color-visited);
+}
+
+.root[data-style='Regular'][data-state='Visited'] .icon {
+  color: var(--com-link-regular-icon-color-visited);
+}
+
+.root[data-style='Inverse'][data-state='Visited'] .icon {
+  color: var(--com-link-inverse-icon-color-visited);
+}
+
+.root[data-style='Regular'][data-state='Disabled'] .text {
+  color: var(--com-link-regular-text-color-disabled);
+}
+
+.root[data-style='Inverse'][data-state='Disabled'] .text {
+  color: var(--com-link-inverse-text-color-disabled);
+}
+
+.root[data-style='Regular'][data-state='Disabled'] .icon {
+  color: var(--com-link-regular-icon-color-disabled);
+}
+
+.root[data-style='Inverse'][data-state='Disabled'] .icon {
+  color: var(--com-link-inverse-icon-color-disabled);
+}

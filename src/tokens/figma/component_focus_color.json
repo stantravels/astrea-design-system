@@ -1,0 +1,38 @@
+{
+  "focus": {
+    "border": {
+      "color": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9176470637321472,
+            0.8078431487083435,
+            0.007843137718737125
+          ],
+          "alpha": 1,
+          "hex": "#EACE02"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:10159:5455",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--com-focus-border-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:0177522b4356426fa9a3b08b4cdfe20c7a19907e/-1:-1",
+            "targetVariableName": "border/focus",
+            "targetVariableSetId": "VariableCollectionId:6a7697251c38727a313639213ffd63b936a2b07b/-1:-1",
+            "targetVariableSetName": "Semantic / Color"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Regular"
+  }
+}

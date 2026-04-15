@@ -24,14 +24,17 @@ function toKebab(value) {
 
 function normalizePart(value) {
   const trimmed = value.trim();
+
   if (/^-\d+$/.test(trimmed)) {
     return `neg-${trimmed.slice(1)}`;
   }
+
   return toKebab(trimmed);
 }
 
 function flattenTokens(tree, pathParts = []) {
   const out = [];
+
   for (const [key, value] of Object.entries(tree)) {
     if (key.startsWith('$')) {
       continue;
@@ -40,6 +43,7 @@ function flattenTokens(tree, pathParts = []) {
     if (value && typeof value === 'object' && '$type' in value && '$value' in value) {
       out.push({
         path: [...pathParts, key],
+        codeSyntax: value.$extensions?.['com.figma.codeSyntax']?.WEB,
       });
       continue;
     }
@@ -48,32 +52,56 @@ function flattenTokens(tree, pathParts = []) {
       out.push(...flattenTokens(value, [...pathParts, key]));
     }
   }
+
   return out;
 }
 
-function toPrimitiveVarName(pathParts, kind) {
+function cssVarFromCodeSyntax(codeSyntax) {
+  if (typeof codeSyntax !== 'string') {
+    return null;
+  }
+
+  const match = codeSyntax.match(/var\((--[a-z0-9-]+)\)/i);
+  return match?.[1] ?? null;
+}
+
+function primitiveVarName(pathParts, kind) {
   const parts = pathParts.map(normalizePart);
+
   if (kind === 'color') {
     return `--pri-color-${parts.join('-')}`;
   }
-  if (kind === 'size') {
+
+  if (kind === 'size' && parts[0] === 'size') {
     return `--pri-size-${parts.slice(1).join('-')}`;
   }
+
   return `--pri-${parts.join('-')}`;
 }
 
-function toSemanticVarName(pathParts) {
+function semanticVarName(pathParts) {
   return `--sem-${pathParts.map(normalizePart).join('-')}`;
 }
 
-function toComponentVarName(pathParts) {
+function componentVarName(pathParts) {
   return `--com-${pathParts.map(normalizePart).join('-')}`;
+}
+
+function linkModeVarName(baseName, modeName) {
+  if (!baseName.startsWith('--com-link-')) {
+    return baseName;
+  }
+
+  return `--com-link-${normalizePart(modeName)}-${baseName.slice('--com-link-'.length)}`;
+}
+
+function tokenVarName(token, fallbackName) {
+  return cssVarFromCodeSyntax(token.codeSyntax) ?? fallbackName;
 }
 
 function parseDeclaredVars(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
-  const matches = content.match(/--[a-z0-9-]+(?=\s*:)/g) ?? [];
-  return new Set(matches);
+  return new Set(content.match(/--[a-z0-9-]+(?=\s*:)/g) ?? []);
 }
 
 function reportSection(title, expected, declared) {
@@ -106,26 +134,48 @@ function reportSection(title, expected, declared) {
 }
 
 function main() {
-  const primitiveExpected = new Set(
-    [
-      ...flattenTokens(readJson('primitive_color.json')).map((token) => toPrimitiveVarName(token.path, 'color')),
-      ...flattenTokens(readJson('primitive_size.json')).map((token) => toPrimitiveVarName(token.path, 'size')),
-      ...flattenTokens(readJson('primitive_typography.json')).map((token) => toPrimitiveVarName(token.path, 'typography')),
-    ]
-  );
+  const primitiveFiles = [
+    { fileName: 'primitive_color.json', kind: 'color' },
+    { fileName: 'primitive_size.json', kind: 'size' },
+    { fileName: 'primitive_typography.json', kind: 'typography' },
+  ];
+  const semanticFiles = ['semantic_color.json', 'semantic_size.json'];
+  const componentFiles = [
+    'component_tab_color.json',
+    'component_tab_size.json',
+    'component_focus_color.json',
+    'component_focus_size.json',
+    'component_counter_color.json',
+    'component_counter_size.json',
+    'component_link_size.json',
+  ];
+  const linkModeFiles = [
+    { fileName: 'component_link_color_regular.json', modeName: 'regular' },
+    { fileName: 'component_link_color_inverse.json', modeName: 'inverse' },
+  ];
 
+  const primitiveExpected = new Set(
+    primitiveFiles.flatMap(({ fileName, kind }) =>
+      flattenTokens(readJson(fileName)).map((token) => tokenVarName(token, primitiveVarName(token.path, kind))),
+    ),
+  );
   const semanticExpected = new Set(
-    [flattenTokens(readJson('semantic_color.json')), flattenTokens(readJson('semantic_size.json'))]
-      .flat()
-      .map((token) => toSemanticVarName(token.path)),
+    semanticFiles.flatMap((fileName) =>
+      flattenTokens(readJson(fileName)).map((token) => tokenVarName(token, semanticVarName(token.path))),
+    ),
   );
   const componentExpected = new Set(
-    [
-      ...flattenTokens(readJson('component_tab_color.json')).map((token) => toComponentVarName(['tab', ...token.path])),
-      ...flattenTokens(readJson('component_tab_size.json')).map((token) => toComponentVarName(['tab', ...token.path])),
-      ...flattenTokens(readJson('component_focus.json')).map((token) => toComponentVarName(['focus', ...token.path])),
-    ],
+    componentFiles.flatMap((fileName) =>
+      flattenTokens(readJson(fileName)).map((token) => tokenVarName(token, componentVarName(token.path))),
+    ),
   );
+  linkModeFiles.forEach(({ fileName, modeName }) => {
+    flattenTokens(readJson(fileName)).forEach((token) => {
+      const defaultName = componentVarName(token.path);
+      const baseName = tokenVarName(token, defaultName);
+      componentExpected.add(linkModeVarName(baseName, modeName));
+    });
+  });
 
   const primitiveDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_primitive.generated.scss'));
   const semanticDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_semantic.generated.scss'));

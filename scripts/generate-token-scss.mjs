@@ -10,8 +10,7 @@ const figmaDir = path.join(rootDir, 'src', 'tokens', 'figma');
 const stylesTokensDir = path.join(rootDir, 'src', 'styles', 'tokens');
 
 function readJson(fileName) {
-  const filePath = path.join(figmaDir, fileName);
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  return JSON.parse(fs.readFileSync(path.join(figmaDir, fileName), 'utf8'));
 }
 
 function toKebab(value) {
@@ -25,10 +24,32 @@ function toKebab(value) {
 
 function normalizePart(value) {
   const trimmed = value.trim();
+
   if (/^-\d+$/.test(trimmed)) {
     return `neg-${trimmed.slice(1)}`;
   }
+
   return toKebab(trimmed);
+}
+
+function colorObjectToCss(value) {
+  if (!value || typeof value !== 'object' || !('components' in value) || !Array.isArray(value.components)) {
+    return '';
+  }
+
+  const [red = 0, green = 0, blue = 0] = value.components;
+  const alpha = typeof value.alpha === 'number' ? value.alpha : 1;
+  const rgb = [red, green, blue].map((component) => Math.round(component * 255));
+
+  if (alpha < 1) {
+    return `rgba(${rgb.join(', ')}, ${alpha})`;
+  }
+
+  if ('hex' in value && typeof value.hex === 'string' && value.hex.length > 0) {
+    return value.hex;
+  }
+
+  return `rgb(${rgb.join(', ')})`;
 }
 
 function toCssString(value) {
@@ -40,8 +61,8 @@ function toCssString(value) {
     return String(value);
   }
 
-  if (typeof value === 'object' && value !== null && 'hex' in value && typeof value.hex === 'string') {
-    return value.hex;
+  if (typeof value === 'object' && value !== null) {
+    return colorObjectToCss(value);
   }
 
   return '';
@@ -61,6 +82,7 @@ function flattenTokens(tree, pathParts = []) {
         type: value.$type,
         value: value.$value,
         aliasData: value.$extensions?.['com.figma.aliasData'],
+        codeSyntax: value.$extensions?.['com.figma.codeSyntax']?.WEB,
       });
       continue;
     }
@@ -73,129 +95,155 @@ function flattenTokens(tree, pathParts = []) {
   return out;
 }
 
+function cssVarFromCodeSyntax(codeSyntax) {
+  if (typeof codeSyntax !== 'string') {
+    return null;
+  }
+
+  const match = codeSyntax.match(/var\((--[a-z0-9-]+)\)/i);
+  return match?.[1] ?? null;
+}
+
 function primitiveVarName(pathParts, kind) {
   const parts = pathParts.map(normalizePart);
+
   if (kind === 'color') {
     return `--pri-color-${parts.join('-')}`;
   }
 
-  if (kind === 'size') {
+  if (kind === 'size' && parts[0] === 'size') {
     return `--pri-size-${parts.slice(1).join('-')}`;
   }
 
   return `--pri-${parts.join('-')}`;
 }
 
-function toSemanticVarName(pathParts) {
+function semanticVarName(pathParts) {
   return `--sem-${pathParts.map(normalizePart).join('-')}`;
 }
 
-function toComponentVarName(pathParts) {
+function componentVarName(pathParts) {
   return `--com-${pathParts.map(normalizePart).join('-')}`;
 }
 
-function createPrimitiveScss(primitiveTrees) {
-  const allTokens = primitiveTrees.flatMap(({ tree, kind }) =>
-    flattenTokens(tree).map((token) => ({ ...token, kind })),
-  );
-  const lines = allTokens
-    .map((token) => {
-      const name = primitiveVarName(token.path, token.kind);
-      const value = toCssString(token.value);
-      return `  ${name}: ${value};`;
-    })
-    .sort();
+function linkModeVarName(baseName, modeName) {
+  if (!baseName.startsWith('--com-link-')) {
+    return baseName;
+  }
 
-  return `// Auto-generated from src/tokens/figma primitive exports.\n// Run: npm run tokens:generate\n\n@mixin astrea-primitive-tokens {\n${lines.join('\n')}\n}\n`;
+  return `--com-link-${normalizePart(modeName)}-${baseName.slice('--com-link-'.length)}`;
 }
 
-function aliasToPrimitiveVar(aliasTargetName) {
-  if (!aliasTargetName) {
+function aliasToVar(aliasData) {
+  const targetName = aliasData?.targetVariableName;
+  const targetSetName = aliasData?.targetVariableSetName ?? '';
+
+  if (!targetName) {
     return null;
   }
 
-  const pathParts = aliasTargetName.split('/').map((part) => part.trim()).filter(Boolean);
+  const pathParts = targetName.split('/').map((part) => part.trim()).filter(Boolean);
   if (pathParts.length === 0) {
     return null;
   }
 
-  const group = normalizePart(pathParts[0] ?? '');
-  const kind = group === 'size' ? 'size' : group.startsWith('font-') || group === 'line-height' ? 'typography' : 'color';
-  return primitiveVarName(pathParts, kind);
-}
-
-function aliasToSemanticVar(aliasTargetName) {
-  if (!aliasTargetName) {
-    return null;
+  if (targetSetName.startsWith('Primitive /')) {
+    const primitiveKind = targetSetName.includes('Color')
+      ? 'color'
+      : targetSetName.includes('Size')
+        ? 'size'
+        : 'typography';
+    return primitiveVarName(pathParts, primitiveKind);
   }
 
-  const pathParts = aliasTargetName.split('/').map((part) => part.trim()).filter(Boolean);
-  if (pathParts.length === 0) {
-    return null;
+  if (targetSetName.startsWith('Semantic /')) {
+    return semanticVarName(pathParts);
   }
 
-  return toSemanticVarName(pathParts);
+  if (targetSetName.startsWith('Component /')) {
+    return componentVarName(pathParts);
+  }
+
+  return null;
 }
 
-function createSemanticScss(semanticTrees) {
-  const allTokens = semanticTrees.flatMap(({ tree }) => flattenTokens(tree));
-  const lines = allTokens
-    .map((token) => {
-      const name = toSemanticVarName(token.path);
-      const aliasVar = aliasToPrimitiveVar(token.aliasData?.targetVariableName);
-      const value = aliasVar ? `var(${aliasVar})` : toCssString(token.value);
-      return `  ${name}: ${value};`;
-    })
-    .sort();
-
-  return `// Auto-generated from src/tokens/figma semantic exports.\n// Run: npm run tokens:generate\n\n@mixin astrea-semantic-tokens {\n${lines.join('\n')}\n}\n`;
+function tokenVarName(token, fallbackName) {
+  return cssVarFromCodeSyntax(token.codeSyntax) ?? fallbackName;
 }
 
-function createTabComponentScss(tabTrees) {
-  const allTokens = tabTrees.flatMap(({ tree, namespace }) =>
-    flattenTokens(tree).map((token) => ({ ...token, namespace })),
-  );
-  const lines = allTokens
-    .map((token) => {
-      const name = toComponentVarName([token.namespace, ...token.path]);
-      const aliasVar = aliasToSemanticVar(token.aliasData?.targetVariableName);
-      const value = aliasVar ? `var(${aliasVar})` : toCssString(token.value);
-      return `  ${name}: ${value};`;
-    })
+function createScssFile(title, mixinName, tokens) {
+  const lines = tokens
+    .map(({ name, value }) => `  ${name}: ${value};`)
     .sort();
 
-  return `// Auto-generated from src/tokens/figma component exports.\n// Run: npm run tokens:generate\n\n@mixin astrea-component-tokens {\n${lines.join('\n')}\n}\n`;
+  return `// Auto-generated from src/tokens/figma ${title} exports.\n// Run: npm run tokens:generate\n\n@mixin ${mixinName} {\n${lines.join('\n')}\n}\n`;
 }
 
 function main() {
-  const primitivesColors = readJson('primitive_color.json');
-  const primitivesSizing = readJson('primitive_size.json');
-  const primitivesTypography = readJson('primitive_typography.json');
+  const primitiveFiles = [
+    { fileName: 'primitive_color.json', kind: 'color' },
+    { fileName: 'primitive_size.json', kind: 'size' },
+    { fileName: 'primitive_typography.json', kind: 'typography' },
+  ];
+  const semanticFiles = ['semantic_color.json', 'semantic_size.json'];
+  const componentFiles = [
+    'component_tab_color.json',
+    'component_tab_size.json',
+    'component_focus_color.json',
+    'component_focus_size.json',
+    'component_counter_color.json',
+    'component_counter_size.json',
+    'component_link_size.json',
+  ];
+  const linkModeFiles = [
+    { fileName: 'component_link_color_regular.json', modeName: 'regular' },
+    { fileName: 'component_link_color_inverse.json', modeName: 'inverse' },
+  ];
 
-  const semanticColors = readJson('semantic_color.json');
-  const semanticSizing = readJson('semantic_size.json');
-  const componentTabColors = readJson('component_tab_color.json');
-  const componentTabSizing = readJson('component_tab_size.json');
-  const componentFocus = readJson('component_focus.json');
+  const primitiveTokens = primitiveFiles.flatMap(({ fileName, kind }) =>
+    flattenTokens(readJson(fileName)).map((token) => ({
+      name: tokenVarName(token, primitiveVarName(token.path, kind)),
+      value: toCssString(token.value),
+    })),
+  );
 
-  const primitiveScss = createPrimitiveScss([
-    { tree: primitivesColors, kind: 'color' },
-    { tree: primitivesSizing, kind: 'size' },
-    { tree: primitivesTypography, kind: 'typography' },
-  ]);
-  const semanticScss = createSemanticScss([
-    { tree: semanticColors },
-    { tree: semanticSizing },
-  ]);
-  const componentScss = createTabComponentScss([
-    { tree: componentTabColors, namespace: 'tab' },
-    { tree: componentTabSizing, namespace: 'tab' },
-    { tree: componentFocus, namespace: 'focus' },
-  ]);
+  const semanticTokens = semanticFiles.flatMap((fileName) =>
+    flattenTokens(readJson(fileName)).map((token) => ({
+      name: tokenVarName(token, semanticVarName(token.path)),
+      value: aliasToVar(token.aliasData) ? `var(${aliasToVar(token.aliasData)})` : toCssString(token.value),
+    })),
+  );
 
-  fs.writeFileSync(path.join(stylesTokensDir, '_primitive.generated.scss'), primitiveScss);
-  fs.writeFileSync(path.join(stylesTokensDir, '_semantic.generated.scss'), semanticScss);
-  fs.writeFileSync(path.join(stylesTokensDir, '_component.generated.scss'), componentScss);
+  const componentTokens = componentFiles.flatMap((fileName) =>
+    flattenTokens(readJson(fileName)).map((token) => ({
+      name: tokenVarName(token, componentVarName(token.path)),
+      value: aliasToVar(token.aliasData) ? `var(${aliasToVar(token.aliasData)})` : toCssString(token.value),
+    })),
+  );
+  const linkModeTokens = linkModeFiles.flatMap(({ fileName, modeName }) =>
+    flattenTokens(readJson(fileName)).map((token) => {
+      const defaultName = componentVarName(token.path);
+      const baseName = tokenVarName(token, defaultName);
+
+      return {
+        name: linkModeVarName(baseName, modeName),
+        value: aliasToVar(token.aliasData) ? `var(${aliasToVar(token.aliasData)})` : toCssString(token.value),
+      };
+    }),
+  );
+
+  fs.writeFileSync(
+    path.join(stylesTokensDir, '_primitive.generated.scss'),
+    createScssFile('primitive', 'astrea-primitive-tokens', primitiveTokens),
+  );
+  fs.writeFileSync(
+    path.join(stylesTokensDir, '_semantic.generated.scss'),
+    createScssFile('semantic', 'astrea-semantic-tokens', semanticTokens),
+  );
+  fs.writeFileSync(
+    path.join(stylesTokensDir, '_component.generated.scss'),
+    createScssFile('component', 'astrea-component-tokens', [...componentTokens, ...linkModeTokens]),
+  );
 
   process.stdout.write('Generated SCSS token files:\n');
   process.stdout.write('- src/styles/tokens/_primitive.generated.scss\n');

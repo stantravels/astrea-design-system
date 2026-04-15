@@ -1,5 +1,5 @@
 {
-  "Font-family": {
+  "font-family": {
     "title": {
       "$type": "string",
       "$value": "Titillium Web",
@@ -8,6 +8,9 @@
         "com.figma.scopes": [
           "FONT_FAMILY"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-family-title)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
@@ -20,6 +23,9 @@
         "com.figma.scopes": [
           "FONT_FAMILY"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-family-body)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
@@ -32,12 +38,15 @@
         "com.figma.scopes": [
           "FONT_FAMILY"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-family-monospace)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
     }
   },
-  "Font-weight": {
+  "font-weight": {
     "light": {
       "$type": "string",
       "$value": "Light",
@@ -46,6 +55,9 @@
         "com.figma.scopes": [
           "FONT_STYLE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-weight-light)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
@@ -58,6 +70,9 @@
         "com.figma.scopes": [
           "FONT_STYLE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-weight-regular)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
@@ -70,6 +85,9 @@
         "com.figma.scopes": [
           "FONT_STYLE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-weight-semibold)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
@@ -82,12 +100,15 @@
         "com.figma.scopes": [
           "FONT_STYLE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-weight-bold)"
+        },
         "com.figma.type": "string",
         "com.figma.isOverride": true
       }
     }
   },
-  "Font-size": {
+  "font-size": {
     "3xs": {
       "$type": "number",
       "$value": 8,
@@ -96,6 +117,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-3xs)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -107,6 +131,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-2xs)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -118,6 +145,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-xs)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -129,6 +159,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-s)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -140,6 +173,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-m)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -151,6 +187,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-l)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -162,6 +201,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-xl)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -173,6 +215,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-2xl)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -184,6 +229,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-3xl)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -195,6 +243,9 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-4xl)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -206,11 +257,14 @@
         "com.figma.scopes": [
           "FONT_SIZE"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-font-size-5xl)"
+        },
         "com.figma.isOverride": true
       }
     }
   },
-  "Line-height": {
+  "line-height": {
     "title": {
       "$type": "number",
       "$value": 120,
@@ -219,6 +273,9 @@
         "com.figma.scopes": [
           "LINE_HEIGHT"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-line-height-title)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -230,6 +287,9 @@
         "com.figma.scopes": [
           "LINE_HEIGHT"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-line-height-body)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -241,6 +301,9 @@
         "com.figma.scopes": [
           "LINE_HEIGHT"
         ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-line-height-footnote)"
+        },
         "com.figma.isOverride": true
       }
     }

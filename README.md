@@ -32,7 +32,7 @@ React + TypeScript + Vite + Storybook starter for the Astrea design system.
 The project uses a 3-level token hierarchy:
 - `primitive` -> base values
 - `semantic` -> aliases mapped to primitive tokens
-- `component` -> aliases mapped to semantic tokens, currently implemented for `Tab` and `Focus`
+- `component` -> aliases mapped to semantic tokens, currently implemented for `Tab`, `Focus`, and `Counter`
 
 Recommended workflow after exporting updated JSON files from Figma:
 
@@ -44,7 +44,10 @@ Recommended workflow after exporting updated JSON files from Figma:
    - `semantic_size.json`
    - `component_tab_color.json`
    - `component_tab_size.json`
-   - `component_focus.json`
+   - `component_focus_color.json`
+   - `component_focus_size.json`
+   - `component_counter_color.json`
+   - `component_counter_size.json`
 2. Generate SCSS token files:
    - `npm run tokens:generate`
 3. Verify token sync:
@@ -59,6 +62,7 @@ Auto-generated files:
 
 Important:
 - generated files should not be edited manually;
-- developer-friendly aliases and composed runtime variables live in `src/styles/tokens/_aliases.scss`;
+- `src/styles/tokens/_aliases.scss` is intentionally kept as a placeholder for any future runtime alias layer;
 - the single entry point for token assembly is `src/styles/tokens.scss`;
-- generated variables use concise level prefixes: `--pri-*`, `--sem-*`, `--com-*`.
+- generated variables use concise level prefixes: `--pri-*`, `--sem-*`, `--com-*`;
+- components consume generated token variables directly instead of `--astrea-*` aliases.

@@ -1,4 +1,3 @@
-@use './tokens/aliases';
 @use './tokens/primitive.generated' as primitive;
 @use './tokens/semantic.generated' as semantic;
 @use './tokens/component.generated' as component;
@@ -7,5 +6,4 @@
   @include primitive.astrea-primitive-tokens;
   @include semantic.astrea-semantic-tokens;
   @include component.astrea-component-tokens;
-  @include aliases.astrea-runtime-aliases;
 }

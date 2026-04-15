@@ -20,9 +20,9 @@ const preview: Preview = {
     backgrounds: {
       default: 'Canvas',
       values: [
-        { name: 'Canvas', value: 'var(--astrea-surface-grey-xweak)' },
-        { name: 'Base', value: 'var(--astrea-surface-base)' },
-        { name: 'Brand Weak', value: 'var(--astrea-surface-brand-xxweak)' },
+        { name: 'Canvas', value: 'var(--sem-surface-grey-xweak)' },
+        { name: 'Base', value: 'var(--sem-surface-base)' },
+        { name: 'Brand Weak', value: 'var(--sem-surface-brand-xxweak)' },
       ],
     },
     docs: {

@@ -1,10 +1,13 @@
 {
-  "Size": {
+  "size": {
     "0": {
       "$type": "number",
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9426",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-0)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -13,6 +16,9 @@
       "$value": 1,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9427",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-1)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -21,6 +27,9 @@
       "$value": 2,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9428",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-2)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -29,6 +38,9 @@
       "$value": 3,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9429",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-3)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -37,6 +49,9 @@
       "$value": 4,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9430",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-4)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -45,6 +60,9 @@
       "$value": 8,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9431",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-8)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -53,6 +71,9 @@
       "$value": 12,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9432",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-12)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -61,6 +82,9 @@
       "$value": 16,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9433",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-16)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -69,6 +93,9 @@
       "$value": 20,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9434",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-20)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -77,6 +104,9 @@
       "$value": 24,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9435",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-24)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -85,6 +115,9 @@
       "$value": 28,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9436",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-28)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -93,6 +126,9 @@
       "$value": 32,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9437",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-32)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -101,6 +137,9 @@
       "$value": 36,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9438",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-36)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -109,6 +148,9 @@
       "$value": 40,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9439",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-40)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -117,6 +159,9 @@
       "$value": 44,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9440",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-44)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -125,6 +170,9 @@
       "$value": 48,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9441",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-48)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -133,6 +181,9 @@
       "$value": 52,
       "$extensions": {
         "com.figma.variableId": "VariableID:560:6119",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-52)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -141,6 +192,9 @@
       "$value": 56,
       "$extensions": {
         "com.figma.variableId": "VariableID:560:6120",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-56)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -149,6 +203,9 @@
       "$value": 60,
       "$extensions": {
         "com.figma.variableId": "VariableID:560:6118",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-60)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -157,6 +214,9 @@
       "$value": 64,
       "$extensions": {
         "com.figma.variableId": "VariableID:10088:771",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-64)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -165,6 +225,9 @@
       "$value": 68,
       "$extensions": {
         "com.figma.variableId": "VariableID:10088:772",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-68)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -173,6 +236,9 @@
       "$value": 72,
       "$extensions": {
         "com.figma.variableId": "VariableID:10088:773",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-72)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -181,6 +247,9 @@
       "$value": 76,
       "$extensions": {
         "com.figma.variableId": "VariableID:6213:12661",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-76)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -189,6 +258,9 @@
       "$value": 80,
       "$extensions": {
         "com.figma.variableId": "VariableID:10088:774",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-80)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -197,6 +269,9 @@
       "$value": -1,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9425",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-neg-1)"
+        },
         "com.figma.isOverride": true
       }
     },
@@ -205,6 +280,9 @@
       "$value": 999,
       "$extensions": {
         "com.figma.variableId": "VariableID:545:9442",
+        "com.figma.codeSyntax": {
+          "WEB": "var(--pri-size-full)"
+        },
         "com.figma.isOverride": true
       }
     }
