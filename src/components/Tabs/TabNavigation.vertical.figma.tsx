@@ -26,23 +26,13 @@ const verticalItems: TabNavigationItem[] = [
 
 figma.connect(
   VerticalTabNavigation,
-  'https://www.figma.com/design/2xS0QG1Xzg8rGGrENI9BHN/Astrea-Design-System-v2?m=auto&node-id=2123-10100&t=EquaG5YM9kSxEizz-1',
+  'https://www.figma.com/design/wDBJEZqncu4AoAN0OrL61W/slots-and-tokens?node-id=209-4714&t=MMbW15naMNBxoSts-4',
   {
-    props: {
-      selected: figma.enum('Selected', {
-        '1': 'tab-1',
-        '2': 'tab-2',
-        '3': 'tab-3',
-        '4': 'tab-4',
-        '5': 'tab-5',
-      }),
-    },
-    example: ({ selected }) => (
+    example: () => (
       <VerticalTabNavigation
         ariaLabel="Content tabs"
         defaultSelected="tab-1"
         items={verticalItems}
-        selected={selected}
       />
     ),
   },
