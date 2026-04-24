@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import { Counter } from '../Counter/Counter';
-import { Icon } from '../Icon/Icon';
+import { Icon, type IconName } from '../Icon/Icon';
 import styles from './Link.module.css';
 
 export type LinkType = 'Text link' | 'Subtle link' | 'Menu link';
@@ -21,9 +21,9 @@ export interface LinkProps
   state?: LinkState;
   text?: string;
   showIconBefore?: boolean;
-  iconBefore?: string;
+  iconBefore?: IconName;
   showIconAfter?: boolean;
-  iconAfter?: string;
+  iconAfter?: IconName;
   showText?: boolean;
   showCounter?: boolean;
   counter?: string;

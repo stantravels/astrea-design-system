@@ -78,6 +78,19 @@
   background: transparent;
 }
 
+.root:focus-visible {
+  outline: none;
+}
+
+.root:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--com-focus-padding-y) * -1px) calc(var(--com-focus-padding-x) * -1px);
+  border: calc(var(--com-focus-border-width) * 1px) solid var(--com-focus-border-color);
+  border-radius: calc(var(--com-focus-corner-radius) * 1px);
+  pointer-events: none;
+}
+
 .leading,
 .trailing {
   display: inline-flex;

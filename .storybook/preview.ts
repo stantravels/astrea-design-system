@@ -1,7 +1,48 @@
+import React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import '../src/styles/index.scss';
 
 const preview: Preview = {
+  globalTypes: {
+    theme: {
+      description: 'Astrea color theme',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'paintbrush',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  decorators: [
+    (Story, context) => {
+      const theme = context.globals.theme === 'dark' ? 'dark' : 'light';
+
+      if (typeof document !== 'undefined') {
+        document.documentElement.dataset.theme = theme;
+      }
+
+      return React.createElement(
+        'div',
+        {
+          className: 'astrea-theme',
+          'data-theme': theme,
+          style: {
+            minHeight: '100vh',
+            minWidth: '100%',
+            padding: '24px',
+            background: 'var(--sem-surface-grey-xweak)',
+            color: 'var(--sem-text-primary)',
+          },
+        },
+        React.createElement(Story),
+      );
+    },
+  ],
   parameters: {
     layout: 'centered',
     controls: {

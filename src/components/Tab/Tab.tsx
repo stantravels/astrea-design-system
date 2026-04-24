@@ -1,5 +1,5 @@
 import { Counter } from '../Counter/Counter';
-import { Icon } from '../Icon/Icon';
+import { Icon, type IconName } from '../Icon/Icon';
 import styles from './Tab.module.css';
 
 export type TabState = 'Default' | 'Hover' | 'Disabled' | 'Focused' | 'Pressed';
@@ -12,9 +12,9 @@ export interface TabProps {
   counterActive?: boolean;
   text?: string;
   showIconBefore?: boolean;
-  iconBefore?: string;
+  iconBefore?: IconName;
   showIconAfter?: boolean;
-  iconAfter?: string;
+  iconAfter?: IconName;
   showCounter?: boolean;
   counter?: string;
 }

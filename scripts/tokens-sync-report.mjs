@@ -140,6 +140,7 @@ function main() {
     { fileName: 'primitive_typography.json', kind: 'typography' },
   ];
   const semanticFiles = ['semantic_color.json', 'semantic_size.json'];
+  const darkSemanticFiles = ['semantic_color_dark.json'];
   const componentFiles = [
     'component_tab_color.json',
     'component_tab_size.json',
@@ -164,6 +165,11 @@ function main() {
       flattenTokens(readJson(fileName)).map((token) => tokenVarName(token, semanticVarName(token.path))),
     ),
   );
+  const darkSemanticExpected = new Set(
+    darkSemanticFiles.flatMap((fileName) =>
+      flattenTokens(readJson(fileName)).map((token) => tokenVarName(token, semanticVarName(token.path))),
+    ),
+  );
   const componentExpected = new Set(
     componentFiles.flatMap((fileName) =>
       flattenTokens(readJson(fileName)).map((token) => tokenVarName(token, componentVarName(token.path))),
@@ -179,13 +185,15 @@ function main() {
 
   const primitiveDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_primitive.generated.scss'));
   const semanticDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_semantic.generated.scss'));
+  const darkSemanticDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_semantic.dark.generated.scss'));
   const componentDeclared = parseDeclaredVars(path.join(stylesTokensDir, '_component.generated.scss'));
 
   const primitiveOk = reportSection('Primitive tokens', primitiveExpected, primitiveDeclared);
   const semanticOk = reportSection('Semantic tokens', semanticExpected, semanticDeclared);
+  const darkSemanticOk = reportSection('Dark semantic tokens', darkSemanticExpected, darkSemanticDeclared);
   const componentOk = reportSection('Component tokens', componentExpected, componentDeclared);
 
-  if (!primitiveOk || !semanticOk || !componentOk) {
+  if (!primitiveOk || !semanticOk || !darkSemanticOk || !componentOk) {
     process.exitCode = 1;
     process.stdout.write('\nToken sync report: FAILED\n');
     return;

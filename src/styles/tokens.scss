@@ -1,9 +1,19 @@
 @use './tokens/primitive.generated' as primitive;
 @use './tokens/semantic.generated' as semantic;
+@use './tokens/semantic.dark.generated' as semantic-dark;
 @use './tokens/component.generated' as component;
 
 :root {
+  color-scheme: light;
+
   @include primitive.astrea-primitive-tokens;
   @include semantic.astrea-semantic-tokens;
   @include component.astrea-component-tokens;
+}
+
+:root[data-theme='dark'],
+.astrea-theme[data-theme='dark'] {
+  color-scheme: dark;
+
+  @include semantic-dark.astrea-semantic-dark-tokens;
 }

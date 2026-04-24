@@ -64,6 +64,7 @@ svg {
   width: min(960px, calc(100% - 48px));
   margin: 0 auto;
   padding: 48px 0 64px;
+  color: var(--sem-text-primary);
 }
 
 .playground-hero {
@@ -72,6 +73,13 @@ svg {
   padding: calc(var(--pri-size-32) * 1px);
   border: calc(var(--sem-border-width-s) * 1px) solid var(--sem-border-grey-weak);
   background: var(--sem-surface-base);
+}
+
+.playground-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--pri-size-16) * 1px);
 }
 
 .playground-eyebrow {
@@ -85,6 +93,19 @@ svg {
     600
     calc(var(--pri-font-size-s) * 1px) / calc(var(--pri-line-height-footnote) / 100)
     var(--pri-font-family-body), 'Segoe UI', sans-serif;
+}
+
+.playground-theme-toggle {
+  min-height: 40px;
+  padding: 0 calc(var(--pri-size-16) * 1px);
+  border: calc(var(--sem-border-width-s) * 1px) solid var(--sem-border-grey);
+  background: var(--sem-surface-grey-xweak);
+  color: var(--sem-text-primary);
+}
+
+.playground-theme-toggle:hover {
+  border-color: var(--sem-border-brand);
+  color: var(--sem-text-brand);
 }
 
 .playground-hero h1 {
@@ -105,6 +126,18 @@ svg {
   color: var(--sem-text-secondary);
 }
 
+.playground-stack {
+  display: grid;
+  gap: calc(var(--pri-size-16) * 1px);
+}
+
+.playground-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--pri-size-16) * 1px);
+}
+
 @media (max-width: 960px) {
   .playground-shell {
     width: min(100% - 24px, 960px);
@@ -113,6 +146,11 @@ svg {
 
   .playground-hero {
     padding: 24px;
+  }
+
+  .playground-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .playground-hero h1 {

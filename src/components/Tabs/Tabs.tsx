@@ -5,6 +5,7 @@ import styles from './Tabs.module.css';
 export interface TabNavigationItem {
   value: string;
   text: string;
+  panelId?: string;
   iconBefore?: TabProps['iconBefore'];
   iconAfter?: TabProps['iconAfter'];
   counter?: string;
@@ -37,8 +38,12 @@ function TabNavigationBase({
   const [pressedValue, setPressedValue] = useState<string | null>(null);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const selectedValue = selected ?? internalValue;
-  const focusableValue = focusedValue ?? selectedValue;
+  const itemValues = items.map((item) => item.value);
+  const firstValue = itemValues[0] ?? '';
+  const selectedCandidate = selected ?? internalValue;
+  const selectedValue = itemValues.includes(selectedCandidate) ? selectedCandidate : firstValue;
+  const focusableCandidate = focusedValue ?? selectedValue;
+  const focusableValue = itemValues.includes(focusableCandidate) ? focusableCandidate : firstValue;
 
   const handleSelect = (nextValue: string) => {
     if (selected === undefined) {
@@ -108,6 +113,7 @@ function TabNavigationBase({
           <button
             key={item.value}
             id={`${generatedId}-${item.value}`}
+            aria-controls={item.panelId}
             aria-selected={isSelected}
             className={styles.button}
             role="tab"

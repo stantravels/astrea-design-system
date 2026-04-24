@@ -186,6 +186,7 @@ function main() {
     { fileName: 'primitive_typography.json', kind: 'typography' },
   ];
   const semanticFiles = ['semantic_color.json', 'semantic_size.json'];
+  const darkSemanticFiles = ['semantic_color_dark.json'];
   const componentFiles = [
     'component_tab_color.json',
     'component_tab_size.json',
@@ -208,6 +209,12 @@ function main() {
   );
 
   const semanticTokens = semanticFiles.flatMap((fileName) =>
+    flattenTokens(readJson(fileName)).map((token) => ({
+      name: tokenVarName(token, semanticVarName(token.path)),
+      value: aliasToVar(token.aliasData) ? `var(${aliasToVar(token.aliasData)})` : toCssString(token.value),
+    })),
+  );
+  const darkSemanticTokens = darkSemanticFiles.flatMap((fileName) =>
     flattenTokens(readJson(fileName)).map((token) => ({
       name: tokenVarName(token, semanticVarName(token.path)),
       value: aliasToVar(token.aliasData) ? `var(${aliasToVar(token.aliasData)})` : toCssString(token.value),
@@ -241,6 +248,10 @@ function main() {
     createScssFile('semantic', 'astrea-semantic-tokens', semanticTokens),
   );
   fs.writeFileSync(
+    path.join(stylesTokensDir, '_semantic.dark.generated.scss'),
+    createScssFile('dark semantic', 'astrea-semantic-dark-tokens', darkSemanticTokens),
+  );
+  fs.writeFileSync(
     path.join(stylesTokensDir, '_component.generated.scss'),
     createScssFile('component', 'astrea-component-tokens', [...componentTokens, ...linkModeTokens]),
   );
@@ -248,6 +259,7 @@ function main() {
   process.stdout.write('Generated SCSS token files:\n');
   process.stdout.write('- src/styles/tokens/_primitive.generated.scss\n');
   process.stdout.write('- src/styles/tokens/_semantic.generated.scss\n');
+  process.stdout.write('- src/styles/tokens/_semantic.dark.generated.scss\n');
   process.stdout.write('- src/styles/tokens/_component.generated.scss\n');
 }
 

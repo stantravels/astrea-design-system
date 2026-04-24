@@ -71,7 +71,7 @@ function StyleGroup({
         background: inverseBackground ? 'var(--sem-surface-brand-xxxstrong)' : 'var(--sem-surface-base)',
       }}
     >
-      <strong style={{ color: inverseBackground ? 'var(--sem-text-inverse)' : 'inherit' }}>{title}</strong>
+      <strong style={{ color: inverseBackground ? 'var(--com-link-inverse-text-color)' : 'inherit' }}>{title}</strong>
       {children}
     </div>
   );

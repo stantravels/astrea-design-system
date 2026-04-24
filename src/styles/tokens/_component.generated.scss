@@ -23,7 +23,7 @@
   --com-link-inverse-fill-color-disabled: var(--sem-surface-transparent);
   --com-link-inverse-fill-color-hover: var(--sem-surface-brand-xxstrong);
   --com-link-inverse-fill-color-pressed: var(--sem-surface-brand-xstrong);
-  --com-link-inverse-fill-color-selected: var(--sem-surface-brand-xstrong);
+  --com-link-inverse-fill-color-selected: var(--sem-surface-brand);
   --com-link-inverse-fill-color-visited: var(--sem-surface-transparent);
   --com-link-inverse-fill-color: var(--sem-surface-transparent);
   --com-link-inverse-icon-color-disabled: var(--sem-icon-grey-xweak);
@@ -31,13 +31,13 @@
   --com-link-inverse-icon-color-pressed: var(--sem-icon-brand-xweak);
   --com-link-inverse-icon-color-selected: var(--sem-icon-inverse);
   --com-link-inverse-icon-color-visited: var(--sem-icon-data2-weak);
-  --com-link-inverse-icon-color: var(--sem-icon-inverse);
+  --com-link-inverse-icon-color: var(--sem-icon-brand-xweak);
   --com-link-inverse-text-color-disabled: var(--sem-text-grey-weak);
   --com-link-inverse-text-color-hover: var(--sem-text-brand-xweak);
   --com-link-inverse-text-color-pressed: var(--sem-text-brand-xxweak);
   --com-link-inverse-text-color-selected: var(--sem-text-inverse);
   --com-link-inverse-text-color-visited: var(--sem-text-data2-xweak);
-  --com-link-inverse-text-color: var(--sem-text-inverse);
+  --com-link-inverse-text-color: var(--sem-text-brand-xweak);
   --com-link-padding-x: var(--sem-padding-xl);
   --com-link-padding-y: var(--sem-padding-m);
   --com-link-regular-fill-color-disabled: var(--sem-surface-transparent);

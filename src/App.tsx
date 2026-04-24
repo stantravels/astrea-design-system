@@ -1,4 +1,5 @@
-import { HorizontalTabNavigation } from './components';
+import { useState } from 'react';
+import { Counter, HorizontalTabNavigation, Link } from './components';
 import './styles/index.scss';
 
 const tabItems = [
@@ -17,16 +18,40 @@ const tabItems = [
 ] as const;
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
   return (
-    <main className="playground-shell">
+    <main className="playground-shell astrea-theme" data-theme={theme}>
       <section className="playground-hero">
-        <span className="playground-eyebrow">Astrea Design System</span>
-        <h1>Tab Navigation aligned with Figma tokens and Storybook docs.</h1>
+        <div className="playground-toolbar">
+          <span className="playground-eyebrow">Astrea Design System</span>
+          <button
+            aria-pressed={theme === 'dark'}
+            className="playground-theme-toggle"
+            type="button"
+            onClick={() => setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))}
+          >
+            {theme === 'light' ? 'Dark mode' : 'Light mode'}
+          </button>
+        </div>
+        <h1>Design system components aligned with Figma tokens and runtime themes.</h1>
         <p>
-          The current local app stays intentionally focused on the active scope: foundations,
-          the base Tab building block, and horizontal navigation composed from it.
+          The local playground exercises the current token chain across tabs, counters, and
+          links in both light and dark mode.
         </p>
-        <HorizontalTabNavigation ariaLabel="Project overview" defaultSelected="tab-1" items={tabItems} />
+        <div className="playground-stack">
+          <HorizontalTabNavigation ariaLabel="Project overview" defaultSelected="tab-1" items={tabItems} />
+          <div className="playground-row">
+            <Counter value="2" />
+            <Counter active value="128" />
+            <Counter active value="" />
+          </div>
+          <div className="playground-row">
+            <Link text="Regular link" />
+            <Link text="Subtle link" type="Subtle link" />
+            <Link selected text="Menu link" type="Menu link" />
+          </div>
+        </div>
       </section>
     </main>
   );

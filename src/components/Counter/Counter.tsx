@@ -1,28 +1,11 @@
 import clsx from 'clsx';
+import { normalizeCounterValue } from './Counter.utils';
 import styles from './Counter.module.css';
 
 export interface CounterProps {
-  value?: string;
+  value?: number | string;
   active?: boolean;
   className?: string;
-}
-
-function normalizeCounterValue(value?: string) {
-  if (value === undefined || value === null || value.trim() === '') {
-    return '';
-  }
-
-  const numericValue = Number.parseInt(value, 10);
-
-  if (Number.isNaN(numericValue)) {
-    return value;
-  }
-
-  if (numericValue >= 100) {
-    return '99+';
-  }
-
-  return String(numericValue);
 }
 
 export function Counter({ value = '1', active = false, className }: CounterProps) {
